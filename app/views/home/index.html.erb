@@ -1,0 +1,1355 @@
+<div data-layout-mode="light"  data-sidebar-size="default" data-theme-layout="vertical" class="bg-[#EEF0FC] dark:bg-gray-900">
+  <nav id="topbar" class="topbar border-b  dark:border-slate-700/40  fixed inset-x-0  duration-300
+      block print:hidden z-50" style="margin-left: 0 !important;">
+    <div class="mx-0 flex max-w-full flex-wrap items-center lg:mx-auto relative top-[50%] start-[50%] transform -translate-x-1/2 -translate-y-1/2">
+      <div class="ltr:mx-2  rtl:mx-2">
+        <button id="toggle-menu-hide" class="button-menu-mobile flex rounded-full md:me-0 relative">
+          <i data-lucide="menu" class="top-icon w-5 h-5"></i>
+        </button>
+      </div>
+      <div class="flex items-center md:w-[40%] lg:w-[30%] xl:w-[20%]">
+        <div class="relative ltr:mx-2 rtl:mx-2 self-center">
+            <span>
+                <%= image_tag "logo-sm.png", alt: "logo-small", class: "logo-sm h-8 align-middle inline-block" %>
+            </span>
+            <span>
+                <%= image_tag "logo.png", alt: "logo-large", class: "logo-lg h-[28px] logo-light hidden dark:inline-block ms-1 group-data-[sidebar=dark]:inline-block group-data-[sidebar=brand]:inline-block" %>
+                <%= image_tag "logo.png", alt: "logo-large", class: "logo-lg h-[28px] logo-dark inline-block dark:hidden ms-1 group-data-[sidebar=dark]:hidden group-data-[sidebar=brand]:hidden" %>
+            </span>                </div>
+      </div>
+
+      <div class="order-1 ltr:ms-auto rtl:ms-0 rtl:me-auto flex items-center md:order-2">
+        <div class="ltr:me-2 ltr:md:me-4 rtl:me-0 rtl:ms-2 rtl:lg:me-0 rtl:md:ms-4 dropdown relative">
+          <button
+            type="button"
+            class="dropdown-toggle flex rounded-full md:me-0"
+            aria-expanded="false"
+              data-fc-autoclose="both" data-fc-type="dropdown">
+            <span data-lucide="search" class="top-icon w-5 h-5"></span>
+          </button>
+
+          <div
+            class="left-auto right-0 z-50 my-1 hidden min-w-[300px]
+            list-none divide-y  divide-gray-100 rounded-md border-slate-700
+            md:border-white text-base shadow dark:divide-gray-600 bg-white
+            dark:bg-slate-800" onclick="event.stopPropagation()">
+            <div class="relative">
+              <div
+                class="pointer-events-none absolute inset-y-0 left-0 flex items-center
+                pl-3">
+                <i class="ti ti-search text-gray-400 z-10"></i>
+              </div>
+              <input
+                type="text"
+                id="email-adress-icon"
+                class="block w-full rounded-lg border border-slate-200 dark:border-slate-700/60 bg-slate-200/10 p-1.5
+                pl-10 text-slate-600 dark:text-slate-400 outline-none focus:border-slate-300
+                focus:ring-slate-300 dark:bg-slate-800/20 sm:text-sm"
+                placeholder="Search..."
+                />
+            </div>
+          </div>
+        </div>
+        <div class="ltr:me-2 ltr:md:me-4 rtl:me-0 rtl:ms-2 rtl:lg:me-0 rtl:md:ms-4">
+
+          <button id="toggle-theme" class="flex rounded-full md:me-0 relative">
+            <span data-lucide="moon" class="top-icon w-5 h-5 light "></span>
+            <span data-lucide="sun" class="top-icon w-5 h-5 dark hidden"></span>
+          </button>
+        </div>
+        <div class="ltr:me-2 ltr:lg:me-4 rtl:me-0 rtl:ms-2 rtl:lg:me-0 rtl:md:ms-4 dropdown relative">
+          <button
+            type="button"
+            class="dropdown-toggle flex rounded-full md:me-0"
+            id="Notifications"
+            aria-expanded="false"
+              data-fc-autoclose="both" data-fc-type="dropdown">
+            <span data-lucide="bell" class="top-icon w-5 h-5"></span>
+          </button>
+
+          <div
+            class="left-auto right-0 z-50 my-1 hidden w-64
+            list-none divide-y h-52 divide-gray-100 rounded border border-slate-700/10
+            text-base shadow dark:divide-gray-600 bg-white
+            dark:bg-slate-800"
+            id="navNotifications" data-simplebar>
+            <ul class="py-1" aria-labelledby="navNotifications">
+              <li class="py-2 px-4">
+                <a href="javascript:void(0);" class="dropdown-item">
+                  <div class="flex">
+                      <div class="h-8 w-8 rounded-full bg-primary-500/20 inline-flex me-3">
+                        <span data-lucide="shopping-cart" class="w-4 h-4 inline-block text-primary-500 dark:text-primary-400 self-center mx-auto"></span>
+                      </div>
+                    <div class="flex-grow flex-1 ms-0.5 overflow-hidden">
+                      <p class="text-sm font-medium text-gray-900 truncate
+                        dark:text-gray-300">Karen Robinson</p>
+                      <p class="text-gray-500 mb-0 text-xs truncate
+                        dark:text-gray-400">
+                        Hey ! i'm available here
+                      </p>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li class="py-2 px-4">
+                <a href="javascript:void(0);" class="dropdown-item">
+                  <div class="flex">
+                    <%= image_tag "avatar-3.png", alt: "logo", class: "object-cover rounded-full h-8 w-8 shrink-0 me-3" %>
+                    <div class="flex-grow flex-1 ms-0.5 overflow-hidden">
+                      <p class="text-sm font-medium text-gray-900 truncate
+                        dark:text-gray-300">Your order is placed</p>
+                      <p class="text-gray-500 mb-0 text-xs truncate
+                        dark:text-gray-400">
+                        Dummy text of the printing and industry.
+                      </p>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li class="py-2 px-4">
+                <a href="javascript:void(0);" class="dropdown-item">
+                  <div class="flex">
+                    <div class="h-8 w-8 rounded-full bg-primary-500/20 inline-flex me-3">
+                      <span data-lucide="user" class="w-4 h-4 inline-block text-primary-500 dark:text-primary-400 self-center mx-auto"></span>
+                    </div>
+                    <div class="flex-grow flex-1 ms-0.5 overflow-hidden">
+                      <p class="text-sm font-medium text-gray-900 truncate
+                        dark:text-gray-300">Robert McCray</p>
+                      <p class="text-gray-500 mb-0 text-xs truncate
+                        dark:text-gray-400">
+                        Good Morning!
+                      </p>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li class="py-2 px-4">
+                <a href="javascript:void(0);" class="dropdown-item">
+                  <div class="flex">
+                    <%= image_tag "avatar-9.png", alt: "logo", class: "object-cover rounded-full h-8 w-8 shrink-0 me-3" %>
+                    <div class="flex-grow flex-1 ms-0.5 overflow-hidden">
+                      <p class="text-sm font-medium  text-gray-900 truncate
+                        dark:text-gray-300">Meeting with designers</p>
+                      <p class="text-gray-500 mb-0 text-xs truncate
+                        dark:text-gray-400">
+                        It is a long established fact that a reader.
+                      </p>
+                    </div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="me-2  dropdown relative">
+          <button
+            type="button"
+            class="dropdown-toggle flex items-center rounded-full text-sm
+            focus:bg-none focus:ring-0 dark:focus:ring-0 md:me-0"
+            id="user-profile"
+            aria-expanded="false"
+              data-fc-autoclose="both" data-fc-type="dropdown">
+              <%= image_tag "avatar-1.png", alt: "user photo", class: "h-8 w-8 rounded-full" %>
+            <span class="ltr:ms-2 rtl:ms-0 rtl:me-2 hidden text-left xl:block">
+              <span class="block font-medium text-slate-600 dark:text-gray-300">Maria Gibson</span>
+              <span class="-mt-0.5 block text-xs text-slate-500 dark:text-gray-400">Admin</span>
+            </span>
+          </button>
+
+          <div
+            class="left-auto right-0 z-50 my-1 hidden list-none
+            divide-y divide-gray-100 rounded border border-slate-700/10
+            text-base shadow dark:divide-gray-600 bg-white dark:bg-slate-800 w-40"
+            id="navUserdata">
+
+            <ul class="py-1" aria-labelledby="navUserdata">
+              <li>
+                <a
+                  href="#"
+                  class="flex items-center py-2 px-3 text-sm text-gray-700 hover:bg-gray-50
+                  dark:text-gray-200 dark:hover:bg-gray-900/20
+                  dark:hover:text-white">
+                  <span data-lucide="user"
+                                  class="w-4 h-4 inline-block text-slate-800 dark:text-slate-400 me-2"></span>
+                  Profile</a>
+              </li>
+              <li>
+                <%= link_to new_domain_path, class: "flex items-center py-2 px-3 text-sm text-gray-700 hover:bg-gray-50
+                  dark:text-gray-200 dark:hover:bg-gray-900/20
+                  dark:hover:text-white" do %>
+                    <span data-lucide="dollar-sign"
+                                  class="w-4 h-4 inline-block text-slate-800 dark:text-slate-400 me-2"></span>
+                    Thêm mới Domain
+                  <% end %>
+              </li>
+              <li>
+                  <%= link_to user_management_path, class: "flex items-center py-2 px-3 text-sm text-gray-700 hover:bg-gray-50
+                  dark:text-gray-200 dark:hover:bg-gray-900/20
+                  dark:hover:text-white" do %>
+                    <span data-lucide="dollar-sign"
+                                  class="w-4 h-4 inline-block text-slate-800 dark:text-slate-400 me-2"></span>
+                    Quản lý người dùng
+                  <% end %>
+              </li>
+              <li>
+                <%= link_to destroy_user_session_path, class: "flex items-center py-2 px-3 text-sm text-red-500 hover:bg-gray-50 hover:text-red-600
+                  dark:text-red-500 dark:hover:bg-gray-900/20
+                  dark:hover:text-red-500", method: :delete do %>
+                  <span data-lucide="power" class="w-4 h-4 inline-block text-red-500 dark:text-red-500 me-2"></span>
+                  Đăng xuất
+                <% end %>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+  <div class="ltr:flex flex-1 rtl:flex-row-reverse">
+      <div class="page-wrapper relative ltr:ml-auto rtl:mr-auto rtl:ml-0 w-[calc(100%-120px)] px-4 pt-[64px] duration-300">
+          <div class="xl:w-full">
+              <div class="flex flex-wrap">
+                  <div class="flex items-center py-4 w-full">
+                      <div class="w-full">
+                          <div class="">
+                              <div class="flex flex-wrap justify-between">
+                                  <div class="items-center ">
+                                      <h1 class="font-medium text-3xl block dark:text-slate-100">Ecommerce</h1>
+                                      <ol class="list-reset flex text-sm">
+                                          <li><a href="#" class="text-gray-500 dark:text-slate-400">Robotech</a></li>
+                                          <li><span class="text-gray-500 dark:text-slate-400 mx-2">/</span></li>
+                                          <li class="text-gray-500 dark:text-slate-400">Dashboard</li>
+                                          <li><span class="text-gray-500 dark:text-slate-400 mx-2">/</span></li>
+                                          <li class="text-primary-500 hover:text-primary-600 dark:text-primary-400">Ecommerce</li>
+                                      </ol>
+                                  </div>
+                                  <div class="flex items-center">
+                                      <div class="today-date leading-5 mt-2 lg:mt-0 form-input w-auto rounded-md border inline-block border-primary-500/60 dark:border-primary-500/60 text-primary-500 bg-transparent px-3 py-1 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-primary-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700">
+                                          <input type="text" class="dash_date border-0 focus:border-0 focus:outline-none flatpickr-input" readonly  required="">
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div><!--end container-->
+
+          <div id="main-data">
+            <div class="xl:w-full  min-h-[calc(100vh-138px)] relative pb-14" id="main-admin">
+              <div class="grid grid-cols-12 sm:grid-cols-12 md:grid-cols-12 lg:grid-cols-12 xl:grid-cols-12 gap-4">
+                  <div class="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-3 xl:col-span-3">
+                      <div class="bg-[#1b1b22] shadow-sm dark:shadow-slate-700/10 dark:bg-gray-900  rounded-md w-full relative mb-4">
+                          <div class="flex-auto p-4">
+                              <div class="flex justify-between xl:gap-x-2 items-cente">
+                                  <div class="self-center">
+                                      <p class="text-gray-300 font-semibold dark:text-slate-400 uppercase">Total Revenue</p>
+                                      <h3 class="my-4 font-semibold text-[30px] text-slate-200">$<%= @total_revenue %></h3>
+                                  </div>
+                                  <div class="self-center">
+                                      <i data-lucide="dollar-sign" class=" h-16 w-16 stroke-[#2ecee1]/30"></i>
+                                  </div>
+                              </div>
+                              <p class="truncate text-slate-400"><span class="text-green-500"><i class="mdi mdi-trending-up"></i>10.5%</span> Completions Weekly</p>
+                          </div><!--end card-body-->
+                          <div class="flex-auto p-4 pt-0 -mt-1">
+                              <div class="grid grid-cols-12 sm:grid-cols-12 md:grid-cols-12 lg:grid-cols-12 xl:grid-cols-12 gap-4">
+
+                                  <div class="col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-6 xl:col-span-3">
+                                      <%= image_tag "wallet.png", class: "w-full h-auto" %>
+                                  </div>
+                                  <div class="col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-6 xl:col-span-8 text-end self-center">
+                                      <button class="px-4 py-1 font-medium text-white transition duration-200 ease-in-out delay-200 skew-y-6 bg-brand-600 border-b-4 border-brand-700 rounded shadow-lg shadow-brand-600/50 hover:skew-y-0 hover:border-brand-700">Withdrawal</button>
+                                      <!-- <button class="px-2 py-1 bg-brand-500 border border-transparent collapse:bg-green-100 text-white text-sm rounded hover:bg-brand-600 hover:text-white">Withdrawal</button> -->
+                                  </div>
+                              </div>
+                          </div><!--end card-body-->
+                      </div> <!--end inner-grid-->
+                  </div><!--end col-->
+                  <div class="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-3 xl:col-span-3">
+                      <div class="bg-white shadow-sm dark:shadow-slate-700/10 dark:bg-gray-900  rounded-md w-full relative mb-4">
+                          <div class="flex-auto p-4">
+                              <div class="flex justify-between xl:gap-x-2 items-cente">
+                                  <div class="self-center">
+                                    <p class="text-gray-800 font-semibold dark:text-slate-400 uppercase">Total customers</p>
+                                    <h3 class="my-4 font-semibold text-[30px] dark:text-slate-200"><%= @total_customers %></h3>
+                                  </div>
+                                  <div class="self-center">
+                                      <i data-lucide="users" class=" h-16 w-16 stroke-green/30"></i>
+                                  </div>
+                              </div>
+                              <p class="truncate text-slate-400"><span class="text-red-500"><i class="mdi mdi-trending-down"></i>0.6%</span> Bounce Rate Weekly</p>
+                          </div><!--end card-body-->
+                          <div class="flex-auto p-0 overflow-hidden">
+                              <div class="flex mb-0 h-full">
+                                  <div class="w-full">
+                                      <div class="apexchart-wrapper">
+                                          <div id="dash_spark_1" class="chart-gutters"></div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div><!--end card-body-->
+                      </div> <!--end inner-grid-->
+                  </div><!--end col-->
+                  <div class="col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-3 xl:col-span-3">
+                      <div class="bg-white shadow-sm dark:shadow-slate-700/10 dark:bg-gray-900  rounded-md w-full relative mb-4">
+                          <div class="flex-auto p-4">
+                              <div class="flex justify-between xl:gap-x-2 items-cente">
+                                  <div class="self-center">
+                                      <p class="text-gray-800 font-semibold dark:text-slate-400 text-lg uppercase">Total Checkout</p>
+                                      <h3 class="my-4 font-semibold text-[30px] dark:text-slate-200"><%= @total_checkout || 0 %></h3>
+                                  </div>
+                                  <div class="self-center">
+                                      <i data-lucide="shopping-cart" class=" h-16 w-16 stroke-primary-500/30"></i>
+                                  </div>
+                              </div>
+                              <p class="truncate text-slate-400"><span class="text-green-500"><i class="mdi mdi-trending-up"></i>8.5%</span> New Sessions Today</p>
+                          </div><!--end card-body-->
+                          <div class="flex-auto p-0 overflow-hidden">
+                              <div class="flex mb-0 h-full">
+                                  <div class="w-full">
+                                      <div class="apexchart-wrapper">
+                                          <div id="apex_column1" class="chart-gutters"></div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div><!--end card-body-->
+                      </div> <!--end inner-grid-->
+                  </div><!--end col-->
+                  <div class="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-3 xl:col-span-3">
+                      <div class="bg-white shadow-sm dark:shadow-slate-700/10 dark:bg-gray-900  rounded-md w-full relative mb-4">
+                          <div class="flex-auto p-4">
+                              <div class="flex justify-between xl:gap-x-2 items-cente">
+                                  <div class="self-center">
+                                      <p class="text-gray-800 font-semibold dark:text-slate-400 uppercase">Total Orders</p>
+                                      <h3 class="my-4 font-semibold text-[30px] dark:text-slate-200"><%= @total_order %></h3>
+                                  </div>
+                                  <div class="self-center">
+                                      <i data-lucide="gem" class=" h-16 w-16 stroke-yellow-500/30"></i>
+                                  </div>
+                              </div>
+                              <p class="truncate text-slate-400"><span class="text-green-500"><i class="mdi mdi-trending-up"></i>1.5%</span> Weekly Avg.Sessions</p>
+                          </div><!--end card-body-->
+                          <div class="flex-auto p-0 overflow-hidden">
+                              <div class="grid grid-cols-12">
+                                  <div class="col-span-6">
+                                      <!--<div id="ana_device" class="apex-charts"></div>-->
+                                  </div><!--end col-->
+                                  <div class="col-span-6">
+                                      <div id="" class=""><span class="text-green-500">Conversion Rate</span>
+                                        <h3 class="my-4 font-semibold text-[30px] dark:text-slate-200 text-red-500">
+                                          <% if @total_customers == 0 %>
+                                            <%= 0 %>%
+                                          <% else %>
+                                            <%= ((@total_order.to_f/@total_customers.to_f)*100).round(2) %>%
+                                          <% end %>
+                                        </h3>
+                                      </div>
+                                  </div><!--end col-->
+
+                              </div><!--end grid-->
+                          </div><!--end card-body-->
+                      </div> <!--end inner-grid-->
+                  </div>
+
+              </div> <!--end grid-->
+              <div class="grid grid-cols-12 sm:grid-cols-12 md:grid-cols-12 lg:grid-cols-12 xl:grid-cols-12 gap-4 mb-4">
+                  <div class="col-span-12 sm:col-span-12  md:col-span-12 lg:col-span-6 xl:col-span-6 ">
+                      <div class="bg-white shadow-sm dark:shadow-slate-700/10 dark:bg-gray-900   rounded-md w-full relative">
+                          <div class="border-b border-dashed border-slate-200 dark:border-slate-700 py-4 px-4 dark:text-slate-300/70">
+                              <h4 class="font-medium flex-1 self-center mb-2 md:mb-0 text-xxl">Earnings Reports by Domain</h4>
+                              <p class="text-sm text-slate-400">Earnings Reports Last Week <span class="focus:outline-none text-[11px] bg-brand-500/10 text-brand-500 dark:text-brand-300 rounded font-medium py-[2px] px-2">$18532</span></p>
+                          </div><!--end header-title-->
+                          <div class="grid grid-cols-1 p-4">
+                              <div class="sm:-mx-6 lg:-mx-8">
+                                  <div class="relative overflow-x-auto block w-full sm:px-6 lg:px-8">
+                                      <table class="w-full">
+                                          <thead class="bg-brand-400/10 dark:bg-slate-700/20">
+                                              <tr>
+                                                  <th scope="col" class="p-3 text-base font-medium tracking-wider text-start text-gray-700 uppercase dark:text-gray-400">
+                                                      Domain
+                                                  </th>
+                                                  <th scope="col" class="p-3 text-base font-medium tracking-wider text-start text-gray-700 uppercase dark:text-gray-400">
+                                                      Total Orders
+                                                  </th>
+                                                  <th scope="col" class="p-3 text-base font-medium tracking-wider text-start text-gray-700 uppercase dark:text-gray-400">
+                                                      Conversion Rate
+                                                  </th>
+                                                  <th scope="col" class="p-3 text-base font-medium tracking-wider text-start text-gray-700 uppercase dark:text-gray-400">
+                                                      Revenue
+                                                  </th>
+                                              </tr>
+                                          </thead>
+                                          <tbody>
+                                              <% @domain_data.each do |domain_data| %>
+                                                  <tr class="bg-white border-b border-dashed dark:bg-gray-900 dark:border-gray-700/40">
+                                                      <td class="p-3 text-base  text-gray-600 whitespace-nowrap dark:text-gray-400">
+                                                          <%= domain_data[:domain] %>
+                                                      </td>
+                                                      <td class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                                          <%= domain_data[:total_order] %>
+                                                      </td>
+                                                      <td class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                                      <span class="text-red-500"><%= (( domain_data[:total_order].to_f / domain_data[:visitor].to_f )*100).round(2) %> %</span>
+                                                      </td>
+                                                      <td class="p-3 text-base text-gray-700 whitespace-nowrap dark:text-gray-400">
+                                                          <span class="font-semibold">$<%= domain_data[:revenue].round(2) %></span>
+                                                      </td>
+                                                  </tr>
+                                              <% end %>
+                                              <!-- 2 -->
+                                          </tbody>
+                                      </table>
+                                  </div>
+                              </div>
+                          </div><!--end card-body-->
+                      </div> <!--end card-->
+                  </div><!--end col-->
+                  <div class="col-span-12 sm:col-span-12  md:col-span-12 lg:col-span-6 xl:col-span-6 ">
+                      <div class="bg-white shadow-sm dark:shadow-slate-700/10 dark:bg-gray-900   rounded-md w-full relative">
+                          <div class="border-b border-dashed border-slate-200 dark:border-slate-700 py-4 px-4 dark:text-slate-300/70">
+                              <h4 class="font-medium flex-1 self-center mb-2 md:mb-0 text-xxl">Most Populer Products</h4>
+                              <p class="text-sm text-slate-400">New Products Last Week <span class="focus:outline-none text-[11px] bg-brand-500/10 text-brand-500 dark:text-brand-300 rounded font-medium py-[2px] px-2">5</span></p>
+                          </div><!--end header-title-->
+                          <div class="grid grid-cols-1 p-4">
+                              <div class="sm:-mx-6 lg:-mx-8">
+                                  <div class="relative overflow-x-auto block w-full sm:px-6 lg:px-8">
+                                      <table class="w-full">
+                                          <thead class="bg-brand-400/10 dark:bg-slate-700/20">
+                                              <tr>
+                                                  <th scope="col" class="p-3 text-base font-medium tracking-wider text-start text-gray-700 uppercase dark:text-gray-400">
+                                                      Product
+                                                  </th>
+                                                  <th scope="col" class="p-3 text-base font-medium tracking-wider text-start text-gray-700 uppercase dark:text-gray-400">
+                                                      Visitor
+                                                  </th>
+                                                  <th scope="col" class="p-3 text-base font-medium tracking-wider text-start text-gray-700 uppercase dark:text-gray-400">
+                                                      Orders
+                                                  </th>
+                                                  <th scope="col" class="p-3 text-base font-medium tracking-wider text-start text-gray-700 uppercase dark:text-gray-400">
+                                                      CR
+                                                  </th>
+                                                  <th scope="col" class="p-3 text-base font-medium tracking-wider text-start text-gray-700 uppercase dark:text-gray-400">
+                                                      Revenue
+                                                  </th>
+                                              </tr>
+                                          </thead>
+                                          <tbody id="data-container">
+                                          </tbody>
+                                      </table>
+                                      </br>
+                                      <div id="pagination-container" style="display: flex; justify-content: center;"></div>
+                                  </div>
+                              </div>
+                          </div><!--end card-body-->
+                      </div> <!--end card-->
+                  </div><!--end col-->
+              </div><!--end inner-grid-->
+              <!-- footer -->
+              <div class="absolute bottom-0 -left-4 -right-4 block print:hidden border-t p-4 h-[52px] dark:border-slate-700/40">
+                <div class="container">
+                  <!-- Footer Start -->
+                  <footer
+                    class="footer bg-transparent  text-center  font-medium text-slate-600 dark:text-slate-400 md:text-left "
+                  >
+                    &copy;
+                    Robotech
+                    <span class="float-right hidden text-slate-600 dark:text-slate-400 md:inline-block"
+                      >Crafted with <i class="ti ti-heart text-red-500"></i> by
+                      Mannatthemes</span
+                    >
+                  </footer>
+                  <!-- end Footer -->
+                </div>
+              </div>
+            </div><!--end container-->
+          </div>
+      </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.js" integrity="sha512-K/oyQtMXpxI4+K0W7H25UopjM8pzq0yrVdFdG21Fh5dBe91I40pDd9A4lzNlHPHBIP2cwZuoxaUSX0GJSObvGA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment-with-locales.min.js" integrity="sha512-4F1cxYdMiAW98oomSLaygEwmCnIP38pb4Kx70yQYqRwLVCs3DbRumfBq82T08g/4LJ/smbFGFpmeFlQgoDccgg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.49.0/apexcharts.min.js" integrity="sha512-NpRqjS1hba1uc6270PmwsKwQti3CSCDkZD9/dlen3+ytOUb/azIyuaGtyewUkjazLMSdl7Zy2CVWMvGxR6vFWg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.6.0/pagination.min.js" integrity="sha512-GzbaI5EsNzdEUq6/2XLYpr1y9CUZRIVsUeWTAFgULtQa5jZ3Nug8i0nZKM6jp9NffBCZhymPPQFcF0DK+JkRpw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- JAVASCRIPTS -->
+    <!-- <div class="menu-overlay"></div> -->
+    <%# <script src="assets/libs/lucide/umd/lucide.min.js"></script>
+    <script src="assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="assets/libs/flatpickr/flatpickr.min.js"></script>
+    <script src="assets/libs/@frostui/tailwindcss/frostui.js"></script>
+
+    <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
+    <script src="assets/js/pages/analytics-index.init.js"></script>
+    <script src="assets/js/app.js"></script> %>
+    <!-- JAVASCRIPTS -->
+  <%# <script>
+    try{
+      flatpickr(".dash_date", {
+          defaultDate: "today",
+          dateFormat: "d-M-Y",
+      });
+      } catch (err){}
+
+
+      try{
+      function initDateRangrPicker() {
+      if ($('#Dash_Date').length == 0) {
+          return;
+      }
+
+      var picker = $('#Dash_Date');
+      var start = moment();
+      var end = moment();
+
+      function cb(start, end, label) {
+          var title = '';
+          var range = '';
+
+          if ((end - start) < 100 || label == 'Today') {
+              title = 'Today:';
+              range = start.format('MMM D');
+          } else if (label == 'Yesterday') {
+              title = 'Yesterday:';
+              range = start.format('MMM D');
+          } else {
+              range = start.format('MMM D') + ' - ' + end.format('MMM D');
+          }
+
+          picker.find('#Select_date').html(range);
+          picker.find('#Day_Name').html(title);
+      }
+
+      picker.daterangepicker({
+          startDate: start,
+          endDate: end,
+          opens: 'left',
+          applyClass: "btn btn-sm btn-primary",
+          cancelClass: "btn btn-sm btn-secondary",
+          ranges: {
+              'Today': [moment(), moment()],
+              'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+              'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+              'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+              'This Month': [moment().startOf('month'), moment().endOf('month')],
+              'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+          }
+      }, cb);
+
+      cb(start, end, '');
+      }
+    } catch (err) { }
+  </script> %>
+
+
+  <script>
+    var currentPage = 1;
+    var itemsPerPage = 5;
+
+    $('#pagination-container').pagination({
+        dataSource: <%= raw @product_data.to_json %>,
+        pageSize: itemsPerPage,
+        callback: function(data, pagination) {
+          renderData(data);
+        }
+    });
+
+    function renderData(data) {
+        var html = '';
+        for (var i = 0; i < data.length; i++) {
+            var item = data[i];
+            html += '<tr class="bg-white border-b border-dashed dark:bg-gray-900 dark:border-gray-700/40">';
+            html += '<td class="p-3 text-base font-medium whitespace-nowrap dark:text-white">';
+            html += item.product_name + '<br/>';
+            html += '<small class="text-gray-400">' + item.domain + '</small>';
+            html += '</td>';
+            html += '<td class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">';
+            html += item.visitor;
+            html += '</td>';
+            html += '<td class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">';
+            html += item.order_count;
+            html += '</td>';
+            html += '<td class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">';
+            html += '<span class="text-red-500">';
+            html += item.visitor == 0 ? 0 : ((item.order_count/item.visitor)* 100).toFixed(2).replace(/\.?0+$/, '');
+            html += '%</span>';
+            html += '</td>';
+            html += '<td class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">$' + item.revenue + '</td>';
+            html += '</tr>';
+        }
+        $('#data-container').html(html);
+    }
+  </script>
+
+  <script>
+    try{
+      var options = {
+
+
+
+        chart: {
+            height:80,
+            animations: {
+                enabled: false
+            },
+            sparkline: {
+                enabled: true
+            },
+            dropShadow: {
+              enabled: true,
+              top: 12,
+              left: 0,
+              bottom: 0,
+              right: 0,
+              blur: 2,
+              color: "rgba(132, 145, 183, 0.3)",
+              opacity: 0.35,
+            },
+            type:"bar"
+        },
+        plotOptions: {
+            bar: {
+                horizontal: false,
+                endingShape: "rounded",
+                columnWidth: "40%"
+            }
+        },
+        dataLabels: {
+            enabled: false
+        },
+        stroke: {
+            show: true,
+            width: 2,
+            colors: ["transparent"]
+        },
+        colors: ["#5C3DC3"],
+        series:[ {
+            name: "Orders",
+            data: [50, 60, 70, 80, 90, 100, 95, 85, 75, 65, 55, 65, 75, 85, 95, 105, 80, 70, 60, 50, 40, 30, 45, 55, 65, 75, 85, 95, 100, 80, 60]
+        }
+        ],
+        xaxis: {
+            categories: ['1-Jan','2-Jan','3-Jan','4-Jan','5-Jan','6-Jan','7-Jan','8-Jan','9-Jan','10-Jan','11-Jan','12-Jan','13-Jan','14-Jan','15-Jan','16-Jan','17-Jan','18-Jan','19-Jan','20-Jan','21-Jan','22-Jan','23-Jan','24-Jan','25-Jan','26-Jan','27-Jan','28-Jan','29-Jan','30-Jan','31-Jan'],
+            crosshairs: {
+                show: false,
+            },
+        },
+        fill: {
+            opacity: 0.9
+        },
+
+        tooltip: {
+            y: {
+                formatter:function(val) {
+                    return" "+val+" "
+                },
+            },
+        }
+
+    }
+    var chart = new ApexCharts(
+        document.querySelector("#apex_column1"),
+        options
+      );
+
+      chart.render();
+    }catch(err){}
+
+
+    try{
+      var dash_spark_1 = {
+
+        chart: {
+            type: 'area',
+            height: 80,
+            sparkline: {
+                enabled: true
+            },
+            dropShadow: {
+              enabled: true,
+              top: 12,
+              left: 0,
+              bottom: 0,
+              right: 0,
+              blur: 2,
+              color: "rgba(132, 145, 183, 0.3)",
+              opacity: 0.35,
+            },
+        },
+        stroke: {
+            curve: 'smooth',
+            width: 1
+          },
+        fill: {
+            opacity: 0.05,
+        },
+        series: [{
+          data: [4, 8, 5, 10, 4, 16, 5, 11, 6, 11, 30, 10, 13, 4, 6, 3, 6]
+        }],
+        yaxis: {
+            min: 0
+        },
+        colors: ['#00be82'],
+      }
+      new ApexCharts(document.querySelector("#dash_spark_1"), dash_spark_1).render();
+    }catch (err){}
+
+    try{
+    var options = {
+      chart: {
+        height: 100,
+        type: "donut",
+        dropShadow: {
+          enabled: true,
+          top: 12,
+          left: 0,
+          bottom: 0,
+          right: 0,
+          blur: 2,
+          color: "rgba(132, 145, 183, 0.3)",
+          opacity: 0.35,
+        },
+      },
+      plotOptions: {
+        pie: {
+          donut: {
+            size: "75%",
+          },
+        },
+      },
+      dataLabels: {
+        enabled: false,
+      },
+
+      stroke: {
+        show: true,
+        width: 2,
+        colors: ["transparent"],
+      },
+
+      series: [50, 25, 25],
+      legend: {
+        show: false,
+        position: "right",
+        horizontalAlign: "center",
+        verticalAlign: "middle",
+        floating: false,
+        fontSize: "13px",
+        offsetX: 0,
+        offsetY: 0,
+      },
+      labels: ["Mobile", "Tablet", "Desktop"],
+      colors: ["#fd3d97", "#5d78ff", "#35bfa3"],
+
+      responsive: [
+        {
+          breakpoint: 600,
+          options: {
+            plotOptions: {
+              donut: {
+                customScale: 0.2,
+              },
+            },
+            chart: {
+              height: 240,
+            },
+            legend: {
+              show: false,
+            },
+          },
+        },
+      ],
+      tooltip: {
+        y: {
+          formatter: function (val) {
+            return val + " %";
+          },
+        },
+      },
+    };
+
+    var chart = new ApexCharts(document.querySelector("#ana_device"), options);
+    chart.render();
+
+    }catch (err) {}
+
+    try{
+      var options = {
+        chart: {
+            height: 350,
+            type: 'area',
+            width: '100%',
+            stacked: true,
+            toolbar: {
+              show: false,
+              autoSelected: 'zoom'
+            },
+            dropShadow: {
+              enabled: true,
+              top: 12,
+              left: 0,
+              bottom: 0,
+              right: 0,
+              blur: 2,
+              color: "rgba(132, 145, 183, 0.3)",
+              opacity: 0.35,
+            },
+        },
+        colors: ['#1b1b22', '#fa6432'],
+        dataLabels: {
+            enabled: false
+        },
+        stroke: {
+            curve: 'straight',
+            width: [2, 0.5],
+            dashArray: [0, 3],
+            lineCap: 'round',
+        },
+        grid: {
+          padding: {
+            left: 0,
+            right: 0
+          },
+          strokeDashArray: 3,
+        },
+        markers: {
+          size: 0,
+          hover: {
+            size: 0
+          }
+        },
+        series: [{
+            name: 'Last Year',
+            data: [0,60,20,90,45,110,55,130,44,110,75,120]
+        }, {
+            name: 'This Year',
+            data: [0,45,10,75,35,94,40,115,30,105,65,110]
+        }],
+
+        xaxis: {
+            type: 'month',
+            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            axisBorder: {
+              show: true,
+            },
+            axisTicks: {
+              show: true,
+            },
+        },
+        fill: {
+          type: "gradient",
+          gradient: {
+            shadeIntensity: 1,
+            opacityFrom: 0.4,
+            opacityTo: 0.1,
+            stops: [0, 90, 100]
+          }
+        },
+
+        tooltip: {
+            x: {
+                format: 'dd/MM/yy HH:mm'
+            },
+        },
+        legend: {
+          position: 'top',
+          horizontalAlign: 'right'
+        },
+      }
+
+      var chart = new ApexCharts(
+        document.querySelector("#crm-dash"),
+        options
+      );
+
+      chart.render();
+
+      }catch (err) {}
+
+
+      try{
+        var options = {
+          chart: {
+              height: 205,
+              type: 'donut',
+          },
+          plotOptions: {
+            pie: {
+              donut: {
+                size: '85%'
+              }
+            }
+          },
+          dataLabels: {
+            enabled: false,
+            },
+            stroke: {
+              show: true,
+              width: 2,
+              colors: ['transparent']
+          },
+
+          series: [10, 65, 25,],
+          legend: {
+              show: false,
+              position: 'bottom',
+              horizontalAlign: 'center',
+              verticalAlign: 'middle',
+              floating: false,
+              fontSize: '14px',
+              offsetX: 0,
+              offsetY: 5
+          },
+          labels: [ "Mobile", "Tablet", "Desktop"],
+          colors: ["#13939c", "#603dc3", "#fac639"],
+
+          responsive: [{
+              breakpoint: 600,
+              options: {
+                plotOptions: {
+                    donut: {
+                      customScale: 0.2
+                    }
+                  },
+                  chart: {
+                      height: 200
+                  },
+                  legend: {
+                      show: false
+                  },
+              }
+          }],
+
+          tooltip: {
+            y: {
+                formatter: function (val) {
+                    return   val + " %"
+                }
+            }
+          }
+        }
+
+        var chart = new ApexCharts(
+          document.querySelector("#email_report"),
+          options
+        );
+
+        chart.render();
+      }catch(err){}
+      </script>
+      <script>
+        class App {
+
+      init() {
+
+        const html = document.querySelector("html");
+        const toggletheme = document.querySelector("#toggle-theme");
+        const lightBtn = toggletheme?.querySelector('.light');
+        const darkBtn = toggletheme?.querySelector('.dark');
+        toggletheme?.addEventListener('click', () => {
+
+          if (html.getAttribute('class') === "dark") {
+            document.body.setAttribute("data-layout-mode", "light")
+          } else {
+            document.body.setAttribute("data-layout-mode", "dark")
+          }
+
+          html.classList.toggle("dark");
+          const isDark = html.classList.contains('dark');
+          (!isDark?darkBtn:lightBtn)?.classList.add('hidden');
+          (isDark?darkBtn:lightBtn)?.classList.remove('hidden');
+
+          // togglethemeicon.className = "ti ti-" + `${themeIcon}` + "  top-icon";
+        })
+      }
+    }
+
+
+
+
+    window.addEventListener('DOMContentLoaded', function (e) {
+      new App().init();
+    })
+
+    try {
+      // Icon
+      lucide.createIcons();
+    } catch (err) { }
+    /*********************/
+    /*   Toggle menu     */
+    /*********************/
+    try {
+      document.getElementById("toggle-menu").addEventListener("click", function(){
+        var mobileMenu = document.getElementById("mobile-menu-2");
+        mobileMenu.classList.toggle("hidden");
+        // if (mobileMenu.classList.contains('block')) {
+        //   mobileMenu.classList.remove("hidden");
+        // }else{
+        //   mobileMenu.classList.add("hidden");
+        // }
+      })
+
+    } catch (err) { }
+
+    /*********************/
+    /*   Menu Sticky     */
+    /*********************/
+    function windowScroll() {
+      const navbar = document.getElementById("topbar");
+      if (navbar != null) {
+        if (
+          document.body.scrollTop >= 50 ||
+          document.documentElement.scrollTop >= 50
+        ) {
+          navbar.classList.add("nav-sticky");
+        } else {
+          navbar.classList.remove("nav-sticky");
+        }
+      }
+    }
+
+    window.addEventListener('scroll', (ev) => {
+      ev.preventDefault();
+      windowScroll();
+    })
+
+
+
+
+    /*********************/
+    /*  Vertical Menu     */
+    /*********************/
+    function activeMenu() {
+
+
+      function activeTwoColumn() {
+        function activeTabMenu() {
+          document.querySelectorAll('.tab-menu button').forEach((e) => {
+            e.setAttribute('aria-selected', false);
+          })
+        }
+        activeTabMenu();
+
+        document.querySelectorAll('#Icon-menu a').forEach(function (element, index) {
+          var pageUrl = window.location.href.split(/[?#]/)[0];
+          const target = element;
+
+          if (element.href == pageUrl) {
+            // tabPanelList list link active
+            document.querySelectorAll('#Icon-menu [role="tabpanel"]').forEach(function (elem) {
+              elem.classList.add('hidden');
+              elem.querySelectorAll('.collapse-menu').forEach(function (accorElem) {
+                accorElem.classList.add('hidden');
+              });
+            });
+
+            target.classList.add('active');
+            target.parentNode.classList.add('menuitem-active');
+            let tabNode = null;
+            if (target.parentNode.parentNode.parentNode.hasAttribute("role")) {
+              target.parentNode.parentNode.parentNode.classList.remove('hidden');
+              tabNode = target.parentNode.parentNode.parentNode;
+            }
+            if (target.parentNode.parentNode.parentNode.classList.contains("collapse-menu")) {
+              target.parentNode.parentNode.parentNode.classList.remove('hidden');
+              tabNode = target.parentNode.parentNode.parentNode;
+            }
+            if (target.parentNode.parentNode.parentNode.previousElementSibling) {
+              target.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.nav-link').classList.add('active');
+              target.parentNode.parentNode.parentNode.previousElementSibling.querySelector('[data-accordion-icon]')?.classList.add('rotate-180');
+              target.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.nav-link').setAttribute('aria-expanded', "true");
+              if (target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.hasAttribute("role")) {
+                target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.classList.remove('hidden');
+                tabNode = target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
+              }
+            }
+
+            if (tabNode) {
+              document.querySelectorAll(`.tab-menu button[data-tabs-target="#${tabNode.id}"]`).forEach((e) => {
+                // e.setAttribute('aria-selected', true);
+                e.click();
+              })
+            }
+          }
+        });
+      }
+
+
+      function activeHorizontal() {
+        if (document.querySelector('nav#topbar')) {
+          document.querySelectorAll('nav#topbar ul.NavMenu a').forEach(function (element, index) {
+            var pageUrl = window.location.href.split(/[?#]/)[0];
+            const target = element;
+
+
+            if (element.href == pageUrl) {
+                console.info(element);
+                element.classList.add("active")
+                element.parentElement.parentElement.parentElement.querySelector('a')?.classList.add('active');
+                element.parentElement.parentElement.parentElement.parentElement.parentElement.querySelector('a')?.classList.add('active');
+            }
+          });
+        }
+      }
+
+
+      function activeLeftbar(){
+        document.querySelectorAll('ul.navbar-nav a.nav-link').forEach(function (element, index) {
+          var pageUrl = window.location.href.split(/[?#]/)[0];
+          if(pageUrl===element.href){
+            element.classList.add('active');
+            const parent = element.parentElement.parentElement.parentElement.previousElementSibling;
+
+            const pPrent = parent.parentElement.parentElement.parentElement.previousElementSibling;
+            if(pPrent?.hasAttribute('data-fc-type')){
+              frost.Collapse.getInstanceOrCreate(pPrent).show();
+            }
+
+            if(parent?.hasAttribute('data-fc-type')){
+              frost.Collapse.getInstanceOrCreate(parent).show();
+            }// element.
+          }
+        });
+      }
+
+      activeLeftbar();
+      activeTwoColumn();
+      activeHorizontal();
+
+
+    }
+
+    window.addEventListener("load", (event) => {
+      activeMenu();
+    });
+
+
+
+    try {
+      // Toggle menu
+      document.getElementById("toggle-menu").addEventListener("click", function () {
+        var mobileMenu = document.getElementById("mobile-menu-2");
+        mobileMenu.classList.toggle("block");
+        if (mobileMenu.classList.contains('block')) {
+          mobileMenu.classList.remove("hidden");
+        } else {
+          mobileMenu.classList.add("hidden");
+        }
+      })
+    } catch (err) { }
+
+
+
+
+
+    // Default Mode
+    document.getElementById('default-size-check')?.addEventListener('click', () => {
+      document.body.setAttribute("data-sidebar-size", "default")
+    });
+
+
+
+    //collapsed
+    var collapsedToggle = document.querySelector(".button-menu-mobile");
+    collapsedToggle?.addEventListener('click', function () {
+
+      var sidebarSize = document.body.getAttribute("data-sidebar-size");
+
+      if (sidebarSize == "collapsed") {
+        document.body.setAttribute("data-sidebar-size", "default")
+
+      } else {
+        document.body.setAttribute("data-sidebar-size", "collapsed")
+      }
+
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 282 && window.innerWidth <= 1440) {
+        document.body.setAttribute("data-sidebar-size", "collapsed")
+      } else {
+        document.body.setAttribute("data-sidebar-size", "default")
+      }
+    })
+
+    //collapsed
+    var collapsedToggle = document.querySelector(".button-menu-mobile-2");
+    collapsedToggle?.addEventListener('click', function () {
+
+      var sidebarSize = document.body.getAttribute("data-sidebar-size");
+
+      if (sidebarSize == "collapsed") {
+        document.body.setAttribute("data-sidebar-size", "default")
+        // document.getElementById('default-size-check').checked = true;
+
+      } else {
+        document.body.setAttribute("data-sidebar-size", "collapsed")
+      }
+
+    });
+
+
+
+    function dismissDropdownMenu() {
+      document.querySelectorAll(".dropdown-menu").forEach(function (item) {
+        item.classList.remove("block")
+        item.classList.add("hidden")
+      });
+      document.querySelectorAll(".dropdown-toggle").forEach(function (item) {
+        item.classList.remove("block")
+      });
+    }
+
+    window.addEventListener('click', function (e) {
+      dismissDropdownMenu();
+    });
+
+
+    try {
+      window.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll(".drop-multi button, .second-level a").forEach(el => {
+          el.addEventListener('click', function () {
+            this.nextElementSibling.classList.toggle('block');
+            this.parentNode.classList.toggle('block');
+          });
+        });
+      });
+
+      // data-tw-auto-close
+      Array.from(document.querySelectorAll(".dropdown-toggle")).forEach(function (item) {
+        var elem = item.parentElement
+        if (item.getAttribute('data-tw-auto-close') == 'outside') {
+          elem.querySelector(".dropdown-menu").addEventListener("click", function () {
+            if (!isShowDropMenu) {
+              isShowDropMenu = true;
+            }
+          });
+        } else if (item.getAttribute('data-tw-auto-close') == 'inside') {
+          item.addEventListener("click", function () {
+            isShowDropMenu = true;
+            isMenuInside = true;
+          });
+          elem.querySelector(".dropdown-menu").addEventListener("click", function () {
+            isShowDropMenu = false;
+            isMenuInside = false;
+          });
+        }
+      });
+
+      // window.addEventListener('click', function (e) {
+      //   if (!isShowDropMenu && !isMenuInside) {
+      //     dismissDropdownMenu();
+      //   }
+      //   isShowDropMenu = false;
+      // });
+
+    } catch (err) { }
+
+
+    try{
+      flatpickr(".dash_date", {
+        defaultDate: "today",
+        dateFormat: "d-M-Y",
+      });
+    } catch (err){}
+
+
+    try{
+    function initDateRangrPicker() {
+      if ($('#Dash_Date').length == 0) {
+          return;
+      }
+
+      var picker = $('#Dash_Date');
+      var start = moment();
+      var end = moment();
+
+      function cb(start, end, label) {
+          var title = '';
+          var range = '';
+
+          if ((end - start) < 100 || label == 'Today') {
+              title = 'Today:';
+              range = start.format('MMM D');
+          } else if (label == 'Yesterday') {
+              title = 'Yesterday:';
+              range = start.format('MMM D');
+          } else {
+              range = start.format('MMM D') + ' - ' + end.format('MMM D');
+          }
+
+          picker.find('#Select_date').html(range);
+          picker.find('#Day_Name').html(title);
+      }
+
+      picker.daterangepicker({
+          startDate: start,
+          endDate: end,
+          opens: 'left',
+          applyClass: "btn btn-sm btn-primary",
+          cancelClass: "btn btn-sm btn-secondary",
+          ranges: {
+              'Today': [moment(), moment()],
+              'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+              'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+              'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+              'This Month': [moment().startOf('month'), moment().endOf('month')],
+              'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+          }
+      }, cb);
+
+      cb(start, end, '');
+    }
+    } catch (err) { }
+
+  </script>
+
+  <script>
+    <%# flatpickr(".flatpickr-input", {
+      dateFormat: "d/m/Y",
+      onChange: function(selectedDates, dateStr, instance) {
+        var selectedDate = selectedDates[0];
+        date_time = moment(selectedDate).format("DD/MM/YYYY");
+        var newUrl = "/?date_time=" + encodeURIComponent(date_time);
+        window.location.href = newUrl;
+      }
+    }); %>
+
+
+    document.addEventListener("DOMContentLoaded", function() {
+      // Kiểm tra xem có tham số date_time trong URL không
+      const urlParams = new URLSearchParams(window.location.search);
+      const dateTimeParam = urlParams.get('date_time');
+
+      // Nếu có tham số date_time trong URL
+      if (dateTimeParam) {
+        // Chuyển đổi ngày từ tham số date_time
+        const selectedDate = moment(dateTimeParam, "DD/MM/YYYY").toDate();
+        // Đặt ngày đã chọn cho Flatpickr
+        flatpickr(".flatpickr-input", {
+          dateFormat: "d/m/Y",
+          defaultDate: selectedDate,
+          onChange: function(selectedDates, dateStr, instance) {
+            var selectedDate = selectedDates[0];
+            date_time = moment(selectedDate).format("DD/MM/YYYY");
+            var newUrl = "/?date_time=" + encodeURIComponent(date_time);
+            window.location.href = newUrl;
+          }
+        });
+      } else {
+        flatpickr(".flatpickr-input", {
+          dateFormat: "d/M/Y",
+          onChange: function(selectedDates, dateStr, instance) {
+            var selectedDate = selectedDates[0];
+            date_time = moment(selectedDate).format("DD/MM/YYYY");
+            var newUrl = "/?date_time=" + encodeURIComponent(date_time);
+            window.location.href = newUrl;
+          }
+        });
+      }
+    });
+
+  </script>
+</div>
