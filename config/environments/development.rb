@@ -7,6 +7,7 @@ Rails.application.configure do
   # it changes. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
+  config.hosts << "5m.sale"
 
   # Do not eager load code on boot.
   config.eager_load = false
@@ -56,12 +57,11 @@ Rails.application.configure do
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
-  config.assets.debug = true
+  # config.assets.debug = true
 
   # Suppress logger output for asset requests.
   config.assets.quiet = true
   config.action_mailer.default_url_options = {host: "localhost", port: 3000}
-
 
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true

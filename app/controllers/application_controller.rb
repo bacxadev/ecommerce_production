@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   include Pagy::Backend
-  http_basic_authenticate_with name: "admin", password: "123123"
   protect_from_forgery with: :exception
+  skip_before_action :verify_authenticity_token
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected

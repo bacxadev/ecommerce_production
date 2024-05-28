@@ -2,23 +2,18 @@ class HomeController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    if Time.current.in_time_zone.strftime("%d/%m/%Y") == params["date_time"] || params["date_time"].blank?
-      GoogleSheetService.new().execute
-    end
-    data_json = JSON.parse(Product.first.data_json)
-    date_time = params[:date_time]
-    if date_time.present?
-      data = data_json.select{ |product_info| product_info["date_time"] == date_time }.first || JSON.parse(invalid_date.to_json)
+    GoogleSheetService.new().execute
+    if params["date_time"].present?
+      @domains = check_domain(current_user.domain, params["date_time"].split(' - ') || Time.zone.now.to_date)
     else
-      data = data_json.last
+      @domains = check_domain(current_user.domain, Time.zone.now.to_date)
     end
-
-    @total_customers = data["total_customers"]
-    @total_checkout = data["total_checkout"]
-    @total_order = data["total_order"]
-    @total_revenue = data["total_revenue"]
-    @domain_data = handle_with_domain(data["main_data"])
-    @product_data = data["main_data"]
+    products_array = get_product_by_domain(@domains).flatten
+    @pagy, @products = pagy_array(products_array, items: 6)
+    @total_revenue = @domains.sum(:total_revenue)
+    @total_customers = @domains.sum(:total_customers)
+    @total_order = @domains.sum(:total_order)
+    @total_checkout = @domains.sum(:total_checkout)
 
     respond_to do |format|
       format.html
@@ -28,29 +23,22 @@ class HomeController < ApplicationController
 
   private
 
-  def handle_with_domain(data)
-    domain_totals = Hash.new { |h, k| h[k] = {total_order: 0, revenue: 0, visitor: 0} }
-
-    data.each do |item|
-      domain_totals[item["domain"]][:total_order] += item["order_count"]
-      domain_totals[item["domain"]][:revenue] += item["revenue"]
-      domain_totals[item["domain"]][:visitor] += item["visitor"]
+  def check_domain domain, selected_date
+    if domain.blank?
+      @domains = Domain.where(selected_date: selected_date)
+    elsif domain.split(",").length == 1
+      @domains = Domain.where(domain_name: domain, selected_date: selected_date)
+    else
+      @domains = Domain.where(domain_name: domain.split(","), selected_date: selected_date)
     end
-
-    output_data = domain_totals.map { |domain, totals| { domain: domain, total_order: totals[:total_order], revenue: totals[:revenue], visitor: totals[:visitor] } }
-    output_data
+    @domains
   end
 
-  def visitor_domain
-
-  end
-
-  def invalid_date
-    {
-      "total_customers": 0,
-      "total_order": 0,
-      "total_revenue": 0,
-      "main_data": []
-    }
+  def get_product_by_domain domains
+    products = []
+    domains.each do |domain|
+      products << domain.products
+    end
+    products
   end
 end

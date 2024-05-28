@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, skip: [:registrations]
   root to: "home#index"
   get "/user_management", to: "user_management#index"
   get "/new_admin", to: "user_management#new_admin"

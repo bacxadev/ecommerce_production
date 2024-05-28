@@ -3,6 +3,7 @@
 /*********************/
 /*   App Js     */
 /*********************/
+
 class App {
 
   init() {
@@ -315,9 +316,10 @@ try{
   flatpickr(".dash_date", {
     defaultDate: "today",
     dateFormat: "d-M-Y",
+    mode: "range",
+    timeZone: 'America/Los_Angeles'
   });
 } catch (err){}
-
 
 try{
 function initDateRangrPicker() {
