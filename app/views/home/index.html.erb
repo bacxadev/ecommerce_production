@@ -165,19 +165,19 @@
                                               </tr>
                                           </thead>
                                           <tbody>
-                                              <% @domains.each do |domain| %>
+                                              <% @total_domains.each do |domain| %>
                                                   <tr class="bg-white border-b border-dashed dark:bg-gray-900 dark:border-gray-700/40">
                                                       <td class="p-3 text-base  text-gray-600 whitespace-nowrap dark:text-gray-400">
-                                                          <%= domain.domain_name %>
+                                                          <%= domain[:domain_name] %>
                                                       </td>
                                                       <td class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                          <%= domain.total_order_count %>
+                                                          <%= domain[:total_order] %>
                                                       </td>
                                                       <td class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                      <span class="text-red-500"><%= (( domain.total_order_count.to_f / domain.total_customers.to_f )*100).round(2) %> %</span>
+                                                      <span class="text-red-500"><%= (( domain[:total_order].to_f / domain[:total_customers].to_f )*100).round(2) %> %</span>
                                                       </td>
                                                       <td class="p-3 text-base text-gray-700 whitespace-nowrap dark:text-gray-400">
-                                                          <span class="font-semibold">$<%= 0 %></span>
+                                                          <span class="font-semibold">$<%= domain[:total_revenue] %></span>
                                                       </td>
                                                   </tr>
                                               <% end %>
@@ -221,22 +221,22 @@
                                           <tbody id="data-container">
                                             <% @products.each do |products| %>
                                               <tr class="bg-white border-b border-dashed dark:bg-gray-900 dark:border-gray-700/40">
-                                                <td class="p-3 text-base font-medium whitespace-nowrap dark:text-white" title="<%= products.product_name %>">
-                                                  <%= truncate(products.product_name, length: 35) %><br/>
-                                                <small class="text-gray-400"><%= products.domain.domain_name %></small>
+                                                <td class="p-3 text-base font-medium whitespace-nowrap dark:text-white" title="<%= products[:product_name] %>">
+                                                  <%= truncate(products[:product_name], length: 35) %><br/>
+                                                <small class="text-gray-400"><%= products[:domain_name] %></small>
                                                 </td>
                                                 <td class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                  <%= products.visitor %>
+                                                  <%= products[:visitor] %>
                                                 </td>
                                                 <td class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                  <%= products.order_count %>
+                                                  <%= products[:order_count] %>
                                                 </td>
                                                 <td class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">
                                                 <span class="text-red-500">
-                                                  <%= products.visitor == 0 ? 0 : ((products.order_count.to_f/products.visitor)* 100).round(2) %>
+                                                  <%= products[:visitor].to_i == 0 ? 0 : ((products[:order_count].to_f / products[:visitor].to_i)* 100).round(2) %>
                                                 %</span>
                                                 </td>
-                                                <td class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">$ <%= products.revenue %></td>
+                                                <td class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">$ <%= products[:revenue] %></td>
                                               </tr>
                                             <% end %>
                                           </tbody>

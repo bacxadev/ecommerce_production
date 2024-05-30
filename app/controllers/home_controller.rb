@@ -4,12 +4,19 @@ class HomeController < ApplicationController
   def index
     GoogleSheetService.new().execute
     if params["date_time"].present?
-      @domains = check_domain(current_user.domain, params["date_time"].split(' - ') || Time.zone.now.to_date)
+      start_date_str, end_date_str = params["date_time"].split(' - ')
+      start_date = Date.strptime(start_date_str, "%d/%m/%Y")
+      end_date = Date.strptime(end_date_str, "%d/%m/%Y")
+      date_range = (start_date..end_date).to_a
+      @domains = check_domain(current_user.domain, date_range || Time.zone.now.to_date)
+      @total_domains = total_data(@domains)
     else
       @domains = check_domain(current_user.domain, Time.zone.now.to_date)
+      @total_domains = total_data(@domains)
     end
     products_array = get_product_by_domain(@domains).flatten
-    @pagy, @products = pagy_array(products_array, items: 6)
+    total_products = total_products(products_array)
+    @pagy, @products = pagy_array(total_products, items: 6)
     @total_revenue = @domains.sum(:total_revenue)
     @total_customers = @domains.sum(:total_customers)
     @total_order = @domains.sum(:total_order)
@@ -22,6 +29,65 @@ class HomeController < ApplicationController
   end
 
   private
+
+  def total_data domains
+    grouped_domains = domains.group_by(&:domain_name).map do |domain_name, records|
+      total_customers = records.sum(&:total_customers)
+      total_order = records.sum(&:total_order)
+      total_revenue = records.sum(&:total_revenue)
+      conversion_rate = records.sum(&:conversion_rate)
+      total_checkout = records.sum(&:total_checkout)
+
+      {
+        domain_name: domain_name,
+        total_customers: total_customers,
+        total_order: total_order,
+        total_revenue: total_revenue,
+        conversion_rate: conversion_rate,
+        total_checkout: total_checkout
+      }
+    end
+    grouped_domains
+  end
+
+  def total_products products
+    grouped_products = products.group_by(&:product_name).map do |product_name, records|
+      visitor = records.sum(&:visitor)
+      order_count = records.sum(&:order_count)
+      cr = records.sum(&:cr)
+      revenue = records.sum(&:revenue)
+
+      {
+        product_name: product_name,
+        visitor: visitor,
+        order_count: order_count,
+        cr: cr,
+        revenue: revenue,
+        domain_name: domain_id
+      }
+    end
+    grouped_products
+  end
+
+  def total_products(products)
+    grouped_products = products.group_by { |product| [product.product_name, product.domain.domain_name] }.map do |(product_name, domain_name), records|
+      visitor = records.sum(&:visitor)
+      order_count = records.sum(&:order_count)
+      cr = records.sum(&:cr)
+      revenue = records.sum(&:revenue)
+
+      {
+        product_name: product_name,
+        visitor: visitor,
+        order_count: order_count,
+        cr: cr,
+        revenue: revenue,
+        domain_name: domain_name
+      }
+    end
+
+    grouped_products
+  end
 
   def check_domain domain, selected_date
     if domain.blank?
