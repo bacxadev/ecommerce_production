@@ -4113,8 +4113,9 @@ p{
 }
 
 .today-date .dash_date {
-  max-width: 94px;
   background-color: transparent;
+  max-width: 300px !important;
+  width: 250px !important;
 }
 .today-date:before {
   content: "Today :";

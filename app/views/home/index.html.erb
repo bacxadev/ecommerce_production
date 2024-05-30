@@ -19,7 +19,7 @@
                                   </div>
                                   <div class="flex items-center">
                                       <div class="today-date leading-5 mt-2 lg:mt-0 form-input w-auto rounded-md border inline-block border-primary-500/60 dark:border-primary-500/60 text-primary-500 bg-transparent px-3 py-1 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-primary-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700">
-                                          <input type="text" class="dash_date border-0 focus:border-0 focus:outline-none flatpickr-input" readonly  required="">
+                                          <input type="text" style="max-width: 300px !important; width: 250px !important;" class="dash_date border-0 focus:border-0 focus:outline-none flatpickr-input" readonly  required="">
                                       </div>
                                   </div>
                               </div>
@@ -34,14 +34,14 @@
               <div class="grid grid-cols-12 sm:grid-cols-12 md:grid-cols-12 lg:grid-cols-12 xl:grid-cols-12 gap-4">
                   <div class="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-3 xl:col-span-3">
                       <div class="bg-white shadow-sm dark:shadow-slate-700/10 dark:bg-gray-900  rounded-md w-full relative mb-4">
-                          <div class="flex-auto p-4" style="min-width: 420px;">
+                          <div class="flex-auto p-4">
                               <div class="flex justify-between xl:gap-x-2 items-cente">
                                   <div class="self-center">
                                       <p class="text-gray-800 font-semibold dark:text-slate-400 uppercase">Total Revenue</p>
-                                      <h3 class="my-4 font-semibold text-[30px] dark:text-slate-200">$<%= @total_revenue %></h3>
+                                      <h3 class="my-4 font-semibold text-[30px] dark:text-slate-200">$<%= @total_revenue.round(2) %></h3>
                                   </div>
                                   <div class="self-center">
-                                      <i data-lucide="circle-dollar-sign" class=" h-16 w-16 stroke-yellow-500/30"></i>
+                                    <i data-lucide="circle-dollar-sign" class=" h-16 w-16 stroke-yellow-500/30"></i>
                                   </div>
                               </div>
                           </div><!--end card-body-->
@@ -233,7 +233,7 @@
                                                 </td>
                                                 <td class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">
                                                 <span class="text-red-500">
-                                                  <%= products.visitor == 0 ? 0 : ((products.order_count/products.visitor)* 100).round(2) %>
+                                                  <%= products.visitor == 0 ? 0 : ((products.order_count.to_f/products.visitor)* 100).round(2) %>
                                                 %</span>
                                                 </td>
                                                 <td class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">$ <%= products.revenue %></td>
@@ -939,11 +939,16 @@
 
 
     try{
+      function convertToLosAngelesTime(date) {
+        var inputDate = new Date(date);
+        var losAngelesTime = new Date(inputDate.toLocaleString("en-US", {timeZone: "America/Los_Angeles"}));
+        return losAngelesTime;
+      }
+      var losAngelesDate = convertToLosAngelesTime(new Date());
       flatpickr(".dash_date", {
-        defaultDate: "today",
+        defaultDate: losAngelesDate,
         dateFormat: "d-M-Y",
-        mode: "range",
-        timeZone: 'America/Los_Angeles'
+        mode: "range"
       });
     } catch (err){}
 
