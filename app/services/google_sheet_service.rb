@@ -91,47 +91,7 @@ class GoogleSheetService
     list_domain.each do |domain|
       domain.update! total_revenue: domain.sum_revenue_by_products
     end
-
-    # data = [{
-    #   date_time: ecomece_detail_objects.first[:visit_date].to_date.strftime("%d/%m/%Y"),
-    #   total_customers: total_customers,
-    #   total_checkout: total_checkout,
-    #   total_order: total_orders,
-    #   total_revenue: total_revenue.round(2),
-    #   main_data: main_data
-    # }]
-
-    # old_data_json = JSON.parse(Product.first.data_json)
-    # if (old_data_json.blank? || old_data_json.last.nil?) && ecomece_detail_objects.first[:visit_date].to_date.strftime("%d/%m/%Y") == Time.current.in_time_zone.strftime("%d/%m/%Y")
-    #   Product.first.update! data_json: data.to_json
-    #   Product.first.data_json
-    # elsif old_data_json.present? && old_data_json.last["date_time"] == Time.current.in_time_zone.strftime("%d/%m/%Y")
-    #   data.to_json
-    # elsif old_data_json.present? && old_data_json.last["date_time"] != Time.current.in_time_zone.strftime("%d/%m/%Y") && old_data_json.last["date_time"].to_date != ecomece_detail_objects.first[:visit_date].to_date.strftime("%d/%m/%Y")
-    #   new_data = old_data_json + data
-    #   Product.first.update! data_json: new_data.to_json
-    #   Product.first.data_json
-    # else
-    #   invalid_date.to_json
-    # end
   end
-
-  # def invalid_date
-  #   [{
-  #     "total_customers": 0,
-  #     "total_order": 0,
-  #     "total_revenue": 0,
-  #     "main_data": []
-  #   }]
-  # end
-
-  # {
-  #   domain_id: Domain.where(domain_name: product[:domain]).last.id,
-  #   product_name: product[:product_name],
-  #   visitor: visitor_count,
-  #   order_count: order_count,
-  #   revenue: revenue.round(2),
-  # }
 
   def process_data(data)
     result = {}

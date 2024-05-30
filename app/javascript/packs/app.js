@@ -313,11 +313,16 @@ try {
 
 
 try{
+  function convertToLosAngelesTime(date) {
+    var inputDate = new Date(date);
+    var losAngelesTime = new Date(inputDate.toLocaleString("en-US", {timeZone: "America/Los_Angeles"}));
+    return losAngelesTime;
+  }
+  var losAngelesDate = convertToLosAngelesTime(new Date());
   flatpickr(".dash_date", {
-    defaultDate: "today",
+    defaultDate: losAngelesDate,
     dateFormat: "d-M-Y",
-    mode: "range",
-    timeZone: 'America/Los_Angeles'
+    mode: "range"
   });
 } catch (err){}
 

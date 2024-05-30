@@ -1,0 +1,5 @@
+.today-date .dash_date {
+  max-width: 300px !important;
+  width: 250px !important;
+  background-color: transparent;
+}
