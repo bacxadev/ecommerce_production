@@ -31,9 +31,6 @@
           block print:hidden z-50" style="margin-left: 0 !important;">
         <div class="mx-0 flex max-w-full flex-wrap items-center lg:mx-auto relative top-[50%] start-[50%] transform -translate-x-1/2 -translate-y-1/2">
           <div class="ltr:mx-2  rtl:mx-2">
-            <button id="toggle-menu-hide" class="button-menu-mobile flex rounded-full md:me-0 relative">
-              <i data-lucide="menu" class="top-icon w-5 h-5"></i>
-            </button>
           </div>
           <div class="flex items-center md:w-[40%] lg:w-[30%] xl:w-[20%]">
             <div class="relative ltr:mx-2 rtl:mx-2 self-center">
@@ -42,7 +39,6 @@
                     <%= image_tag "logo-sm.png", alt: "logo-small", class: "logo-sm h-8 align-middle inline-block" %>
                 </span>
                 <span>
-                    <%= image_tag "logo.png", alt: "logo-large", class: "logo-lg h-[28px] logo-light hidden dark:inline-block ms-1 group-data-[sidebar=dark]:inline-block group-data-[sidebar=brand]:inline-block" %>
                     <%= image_tag "logo.png", alt: "logo-large", class: "logo-lg h-[28px] logo-dark inline-block dark:hidden ms-1 group-data-[sidebar=dark]:hidden group-data-[sidebar=brand]:hidden" %>
                 </span>
               <% end %>
@@ -173,19 +169,21 @@
               </div>
             </div>
             <div class="me-2  dropdown relative">
-              <button
-                type="button"
-                class="dropdown-toggle flex items-center rounded-full text-sm
-                focus:bg-none focus:ring-0 dark:focus:ring-0 md:me-0"
-                id="user-profile"
-                aria-expanded="false"
-                  data-fc-autoclose="both" data-fc-type="dropdown">
-                  <%= image_tag "avatar-1.png", alt: "user photo", class: "h-8 w-8 rounded-full" %>
-                <span class="ltr:ms-2 rtl:ms-0 rtl:me-2 hidden text-left xl:block">
-                  <span class="block font-medium text-slate-600 dark:text-gray-300">Maria Gibson</span>
-                  <span class="-mt-0.5 block text-xs text-slate-500 dark:text-gray-400">Admin</span>
-                </span>
-              </button>
+              <% if current_user.present? %>
+                <button
+                  type="button"
+                  class="dropdown-toggle flex items-center rounded-full text-sm
+                  focus:bg-none focus:ring-0 dark:focus:ring-0 md:me-0"
+                  id="user-profile"
+                  aria-expanded="false"
+                    data-fc-autoclose="both" data-fc-type="dropdown">
+                    <%= image_tag "avatar-1.png", alt: "user photo", class: "h-8 w-8 rounded-full" %>
+                  <span class="ltr:ms-2 rtl:ms-0 rtl:me-2 hidden text-left xl:block">
+                    <span class="block font-medium text-slate-600 dark:text-gray-300">Maria Gibson</span>
+                    <span class="-mt-0.5 block text-xs text-slate-500 dark:text-gray-400">Admin</span>
+                  </span>
+                </button>
+              <% end %>
 
               <div
                 class="left-auto right-0 z-50 my-1 hidden list-none

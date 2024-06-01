@@ -2,15 +2,16 @@ class HomeController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    GoogleSheetService.new().execute
     if params["date_time"].present?
       start_date_str, end_date_str = params["date_time"].split(' - ')
       start_date = Date.strptime(start_date_str, "%d/%m/%Y")
       end_date = Date.strptime(end_date_str, "%d/%m/%Y")
       date_range = (start_date..end_date).to_a
+      GoogleSheetService.new().execute if (start_date..end_date).include?(Date.current)
       @domains = check_domain(current_user.domain, date_range || Time.zone.now.to_date)
       @total_domains = total_data(@domains)
     else
+      GoogleSheetService.new().execute
       @domains = check_domain(current_user.domain, Time.zone.now.to_date)
       @total_domains = total_data(@domains)
     end

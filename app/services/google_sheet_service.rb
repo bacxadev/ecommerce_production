@@ -65,8 +65,8 @@ class GoogleSheetService
     orders = domains_info.select { |detail| detail[:order_id].present? }
 
     product_objects.each do |product|
-      product_orders = orders.select { |order| order[:order_product].include?(product[:product_id]) }
-      visitor_count = domains_info.select{|detail| detail[:page_id]== product[:product_id] }.map { |temp| temp[:ip_address] }.uniq.count
+      product_orders = orders.select { |order| order[:order_product].include?(product[:product_id]) && product[:domain] == extract_domain_name(order[:home_url]) }
+      visitor_count = domains_info.select{|detail| detail[:page_id]== product[:product_id] && product[:domain] == extract_domain_name(detail[:home_url]) }.map { |temp| temp[:ip_address] }.uniq.count
       order_count = product_orders.count
       revenue = product_orders.sum { |order| order[:order_total].to_f }
 
@@ -79,7 +79,7 @@ class GoogleSheetService
         revenue: revenue.round(2),
       }
 
-      current_product = Product.where(selected_date: product_params[:selected_date], product_name: product_params[:product_name]).last
+      current_product = Product.where(selected_date: product_params[:selected_date], product_name: product_params[:product_name], domain_id: product_params[:domain_id]).last
       if current_product.present?
         current_product.update!(product_params)
         current_product
