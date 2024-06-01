@@ -23,6 +23,6 @@ env :GEM_PATH, ENV['GEM_PATH']
 set :output, "log/cron_log.log"
 set :zone, "Asia/Bangkok"
 
-every 1.day, at: '02:00 pm' do
-  runner "Domain.run_service", environment: 'development'
-end
+# every 1.day, at: '02:00 pm' do
+#   runner "Domain.run_service", environment: 'development'
+# end
