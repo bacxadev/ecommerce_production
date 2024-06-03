@@ -130,7 +130,7 @@
 
               </div> <!--end grid-->
               <div class="grid grid-cols-12 sm:grid-cols-12 md:grid-cols-12 lg:grid-cols-12 xl:grid-cols-12 gap-4 mb-4">
-                  <div class="col-span-12 sm:col-span-12  md:col-span-12 lg:col-span-6 xl:col-span-6 ">
+                  <div class="col-span-12 sm:col-span-12  md:col-span-12 lg:col-span-6 xl:col-span-12 ">
                       <div class="bg-white shadow-sm dark:shadow-slate-700/10 dark:bg-gray-900   rounded-md w-full relative">
                           <div class="border-b border-dashed border-slate-200 dark:border-slate-700 py-4 px-4 dark:text-slate-300/70">
                               <h4 class="font-medium flex-1 self-center mb-2 md:mb-0 text-xxl">Earnings Reports by Domain</h4>
@@ -152,7 +152,16 @@
                                                       Conversion Rate
                                                   </th>
                                                   <th scope="col" class="p-3 text-base font-medium tracking-wider text-start text-gray-700 uppercase dark:text-gray-400">
-                                                      Revenue
+                                                      Total Revenue
+                                                  </th>
+                                                  <th scope="col" class="p-3 text-base font-medium tracking-wider text-start text-gray-700 uppercase dark:text-gray-400">
+                                                      Total Checkout
+                                                  </th>
+                                                  <th scope="col" class="p-3 text-base font-medium tracking-wider text-start text-gray-700 uppercase dark:text-gray-400">
+                                                      Total Visitor
+                                                  </th>
+                                                  <th scope="col" class="p-3 text-base font-medium tracking-wider text-start text-gray-700 uppercase dark:text-gray-400">
+                                                      AOV
                                                   </th>
                                               </tr>
                                           </thead>
@@ -171,6 +180,15 @@
                                                       <td class="p-3 text-base text-gray-700 whitespace-nowrap dark:text-gray-400">
                                                           <span class="font-semibold">$<%= domain[:total_revenue] %></span>
                                                       </td>
+                                                      <td class="p-3 text-base text-gray-700 whitespace-nowrap dark:text-gray-400">
+                                                          <span class="font-semibold"><%= domain[:total_checkout] %></span>
+                                                      </td>
+                                                      <td class="p-3 text-base text-gray-700 whitespace-nowrap dark:text-gray-400">
+                                                          <span class="font-semibold"><%= domain[:total_customers] %></span>
+                                                      </td>
+                                                      <td class="p-3 text-base text-gray-700 whitespace-nowrap dark:text-gray-400">
+                                                          <span class="font-semibold">$<%= domain[:total_order] == 0 ? 0:(domain[:total_revenue].to_f/domain[:total_order]).round(2) %></span>
+                                                      </td>
                                                   </tr>
                                               <% end %>
                                               <!-- 2 -->
@@ -181,7 +199,7 @@
                           </div><!--end card-body-->
                       </div> <!--end card-->
                   </div><!--end col-->
-                  <div class="col-span-12 sm:col-span-12  md:col-span-12 lg:col-span-6 xl:col-span-6 ">
+                  <div class="col-span-12 sm:col-span-12  md:col-span-12 lg:col-span-6 xl:col-span-12 ">
                       <div class="bg-white shadow-sm dark:shadow-slate-700/10 dark:bg-gray-900   rounded-md w-full relative">
                           <div class="border-b border-dashed border-slate-200 dark:border-slate-700 py-4 px-4 dark:text-slate-300/70">
                               <h4 class="font-medium flex-1 self-center mb-2 md:mb-0 text-xxl">Most Populer Products</h4>
@@ -225,7 +243,7 @@
                                                 </td>
                                                 <td class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">
                                                 <span class="text-red-500">
-                                                  <%= products[:visitor].to_i == 0 ? 0 : ((products[:order_count].to_f / products[:visitor].to_i)* 100).round(2) %>
+                                                  <%= products[:visitor].to_i == 0 ? 0.0 : ((products[:order_count].to_f / products[:visitor].to_i)* 100).round(2) %>
                                                 %</span>
                                                 </td>
                                                 <td class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">$ <%= products[:revenue] %></td>
