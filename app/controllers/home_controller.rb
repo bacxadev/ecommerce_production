@@ -16,7 +16,7 @@ class HomeController < ApplicationController
       @total_domains = total_data(@domains)
     end
     products_array = get_product_by_domain(@domains).flatten
-    total_products = total_products(products_array)
+    total_products = total_products(products_array).sort_by { |product| -product[:visitor] }
     @pagy, @products = pagy_array(total_products, items: 6)
     @total_revenue = @domains.sum(:total_revenue)
     @total_customers = @domains.sum(:total_customers)
