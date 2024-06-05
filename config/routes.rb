@@ -6,5 +6,16 @@ Rails.application.routes.draw do
   get "/new_domain", to: "user_management#new_domain"
   post "/create_domain", to: "user_management#create_domain"
   post "/create_admin", to: "user_management#create_admin"
+  namespace :api do
+    namespace :v1 do
+      resources :domains do
+        collection do
+          post :import_data_domain
+          post :import_data_product
+        end
+      end
+    end
+  end
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
