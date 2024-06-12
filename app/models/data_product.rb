@@ -1,0 +1,2 @@
+class DataProduct < ApplicationRecord
+end
