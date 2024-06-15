@@ -32,6 +32,7 @@ gem 'google-api-client'
 gem "pagy"
 gem 'will_paginate', '~> 4.0'
 gem "whenever"
+gem 'rack-cors'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
