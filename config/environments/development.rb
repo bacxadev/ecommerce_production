@@ -34,7 +34,8 @@ Rails.application.configure do
   config.action_cable.allowed_request_origins = [
     'https://goldigi.com',
     'https://www.goldigi.com',
-    'https://zreview.vn'
+    'https://zreview.vn',
+    'https://smapmart.com'
   ]
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
