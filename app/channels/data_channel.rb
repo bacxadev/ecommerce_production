@@ -4,11 +4,8 @@ class DataChannel < ApplicationCable::Channel
   end
 
   def receive(data)
-    if data["type"] == "traffic"
-      ManageProduct.create!(data)
-    elsif data["type"] == "product"
-      DataProduct.create!(data)
-    end
+    puts data["message"]
+    ActionCable.server.broadcast('data_channel', data)
   end
 
   def unsubscribed
