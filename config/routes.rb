@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get "/new_admin", to: "user_management#new_admin"
   get "/new_domain", to: "user_management#new_domain"
   post "/create_domain", to: "user_management#create_domain"
+  post "/load_products", to: "user_management#load_products"
   post "/create_admin", to: "user_management#create_admin"
   namespace :api do
     namespace :v1 do

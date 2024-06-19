@@ -23,11 +23,29 @@ class UserManagementController < ApplicationController
     redirect_to root_path
   end
 
+  def load_products
+    response = HTTParty.get('https://smapmart.com/wp-json/api-product/v1/get-product')
+
+    if response.success?
+      response.parsed_response["products"].each do |data|
+        Product.create transform_keys(data).except("url_product")
+      end
+    else
+      puts "HTTP Request failed"
+      nil
+    end
+  end
+
   private
 
   def check_role
     if current_user.admin?
       redirect_to root_path
     end
+  end
+
+  def transform_keys(data)
+    data['product_id'] = data.delete('id')
+    data
   end
 end

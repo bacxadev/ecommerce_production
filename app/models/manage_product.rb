@@ -1,2 +1,0 @@
-class ManageProduct < ApplicationRecord
-end
