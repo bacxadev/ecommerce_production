@@ -2,19 +2,14 @@ class HomeController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    if params["date_time"].present?
-      start_date_str, end_date_str = params["date_time"].split(' - ')
-      start_date = Date.strptime(start_date_str, "%d/%m/%Y")
-      end_date = Date.strptime(end_date_str, "%d/%m/%Y")
-      date_range = (start_date..end_date).to_a
-      GoogleSheetService.new().execute if (start_date..end_date).include?(Date.current)
+      # start_date_str, end_date_str = params["date_time"].split(' - ')
+      # start_date = Date.strptime(start_date_str, "%d/%m/%Y")
+      # end_date = Date.strptime(end_date_str, "%d/%m/%Y")
+      date_range = (Time.zone.now.to_date..Time.zone.now.to_date).to_a
+      # GoogleSheetService.new().execute if (start_date..end_date).include?(Date.current)
       @domains = check_domain(current_user.domain, date_range || Time.zone.now.to_date)
       @total_domains = total_data(@domains)
-    else
-      GoogleSheetService.new().execute
-      @domains = check_domain(current_user.domain, Time.zone.now.to_date)
-      @total_domains = total_data(@domains)
-    end
+
     products_array = get_product_by_domain(@domains).flatten
     total_products = total_products(products_array).sort_by { |product| -product[:visitor] }
     @pagy, @products = pagy_array(total_products, items: 6)

@@ -10,7 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_06_11_145123) do
+ActiveRecord::Schema.define(version: 2024_06_19_043620) do
+
+  create_table "add_to_carts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.date "visit_date"
+    t.string "ip_address"
+    t.string "product_id"
+    t.string "domain_url"
+    t.string "add_to_cart"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "checkouts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.date "visit_date"
+    t.string "ip_address"
+    t.string "product_id"
+    t.string "domain_url"
+    t.string "item_id"
+    t.string "order_id"
+    t.string "total"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "data_products", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "product_id"
+    t.string "product_title"
+    t.string "product_link"
+    t.string "domain_url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "domains", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.date "selected_date"
@@ -48,6 +79,15 @@ ActiveRecord::Schema.define(version: 2024_06_11_145123) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["domain_id"], name: "index_products_on_domain_id"
+  end
+
+  create_table "traffics", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.date "visit_date"
+    t.string "ip_address"
+    t.string "product_id"
+    t.string "domain_url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|

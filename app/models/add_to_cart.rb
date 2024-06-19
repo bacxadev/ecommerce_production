@@ -1,0 +1,2 @@
+class AddToCart < ApplicationRecord
+end
