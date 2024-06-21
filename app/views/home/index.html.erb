@@ -1,6 +1,6 @@
 <div data-layout-mode="light"  data-sidebar-size="default" data-theme-layout="vertical" class="bg-[#EEF0FC] dark:bg-gray-900">
   <div class="ltr:flex flex-1 rtl:flex-row-reverse">
-      <div class="page-wrapper relative ltr:ml-auto rtl:mr-auto rtl:ml-0 w-[calc(100%-120px)] px-4 pt-[64px] duration-300">
+      <div class="page-wrapper relative ltr:ml-auto rtl:mr-auto rtl:ml-0 w-[calc(100%-120px)] px-4 pt-[64px] duration-300" style="max-width: 1200px; margin: auto;">
           <div class="xl:w-full">
               <div class="flex flex-wrap">
                   <div class="flex items-center py-4 w-full">
@@ -10,8 +10,13 @@
                                   <div class="items-center ">
                                   </div>
                                   <div class="flex items-center">
-                                      <div class="today-date leading-5 mt-2 lg:mt-0 form-input w-auto rounded-md border inline-block border-primary-500/60 dark:border-primary-500/60 text-primary-500 bg-transparent px-3 py-1 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-primary-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700">
-                                          <input type="text" name="daterange" style="max-width: 300px !important; width: 250px !important;" class="dash_date border-0 focus:border-0 focus:outline-none flatpickr-input" readonly  required="">
+                                      <div style="padding-right: 10px;">
+                                        <button onclick="refreshPage()">
+                                          <i data-lucide="refresh-cw" class="h-5 w-5 stroke-red/30"></i>
+                                        </button>
+                                      </div>
+                                      <div class="leading-5 mt-2 lg:mt-0 form-input w-auto rounded-md border inline-block border-primary-500/60 dark:border-primary-500/60 text-primary-500 bg-transparent px-3 py-1 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-primary-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700">
+                                        <input type="text" name="daterange" style="background-color: rgb(238 240 252)!important; max-width: 300px !important; width: 250px !important;" class="dash_date border-0 focus:border-0 focus:outline-none flatpickr-input" readonly  required="">
                                       </div>
                                   </div>
                               </div>
@@ -36,13 +41,13 @@
                                     <i data-lucide="circle-dollar-sign" class=" h-16 w-16 stroke-yellow-500/30"></i>
                                   </div>
                               </div>
-                          </div><!--end card-body-->
+                          </div>
                           <div class="flex-auto p-4 pt-0 -mt-1">
                               <div class="grid grid-cols-12 sm:grid-cols-12 md:grid-cols-12 lg:grid-cols-12 xl:grid-cols-12 gap-4" style="min-width: 420px;">
                               </div>
-                          </div><!--end card-body-->
-                      </div> <!--end inner-grid-->
-                  </div><!--end col-->
+                          </div>
+                      </div>
+                  </div>
 
                   <div class="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-3 xl:col-span-3">
                       <div class="bg-white shadow-sm dark:shadow-slate-700/10 dark:bg-gray-900  rounded-md w-full relative mb-4">
@@ -56,8 +61,8 @@
                                       <i data-lucide="gem" class=" h-16 w-16 stroke-yellow-500/30"></i>
                                   </div>
                               </div>
-                          </div><!--end card-body-->
-                      </div> <!--end inner-grid-->
+                          </div>
+                      </div>
                   </div>
                   <div class="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-3 xl:col-span-3">
                       <div class="bg-white shadow-sm dark:shadow-slate-700/10 dark:bg-gray-900  rounded-md w-full relative mb-4">
@@ -77,8 +82,8 @@
                                       <i data-lucide="star" class=" h-16 w-16 stroke-yellow-500/30"></i>
                                   </div>
                               </div>
-                          </div><!--end card-body-->
-                      </div> <!--end inner-grid-->
+                          </div>
+                      </div>
                   </div>
 
                   <div class="col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-3 xl:col-span-3">
@@ -93,9 +98,25 @@
                                       <i data-lucide="shopping-cart" class=" h-16 w-16 stroke-primary-500/30"></i>
                                   </div>
                               </div>
-                          </div><!--end card-body-->
-                      </div> <!--end inner-grid-->
-                  </div><!--end col-->
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-3 xl:col-span-3">
+                      <div class="bg-white shadow-sm dark:shadow-slate-700/10 dark:bg-gray-900  rounded-md w-full relative mb-4">
+                          <div class="flex-auto p-4">
+                              <div class="flex justify-between xl:gap-x-2 items-cente">
+                                  <div class="self-center">
+                                      <p class="text-gray-800 font-semibold dark:text-slate-400 uppercase">TOTAL VIEW</p>
+                                      <h3 class="my-4 font-semibold text-[30px] dark:text-slate-200">$<%= @total_order == 0 ? 0:(@total_revenue.to_f/@total_order).round(2) %></h3>
+                                  </div>
+                                  <div class="self-center">
+                                      <i data-lucide="eye" class=" h-16 w-16 stroke-green/30"></i>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
 
                   <div class="col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-3 xl:col-span-3">
                       <div class="bg-white shadow-sm dark:shadow-slate-700/10 dark:bg-gray-900  rounded-md w-full relative mb-4">
@@ -109,9 +130,26 @@
                                       <i data-lucide="users" class=" h-16 w-16 stroke-green/30"></i>
                                   </div>
                               </div>
-                          </div><!--end card-body-->
-                      </div> <!--end inner-grid-->
-                  </div><!--end col-->
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-3 xl:col-span-3">
+                      <div class="bg-white shadow-sm dark:shadow-slate-700/10 dark:bg-gray-900  rounded-md w-full relative mb-4">
+                          <div class="flex-auto p-4">
+                              <div class="flex justify-between xl:gap-x-2 items-cente">
+                                  <div class="self-center">
+                                      <p class="text-gray-800 font-semibold dark:text-slate-400 uppercase">TOTAL ADD TO CART</p>
+                                      <h3 class="my-4 font-semibold text-[30px] dark:text-slate-200">$<%= @total_order == 0 ? 0:(@total_revenue.to_f/@total_order).round(2) %></h3>
+                                  </div>
+                                  <div class="self-center">
+                                      <i data-lucide="shopping-cart" class=" h-16 w-16 stroke-green/30"></i>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
                   <div class="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-3 xl:col-span-3">
                       <div class="bg-white shadow-sm dark:shadow-slate-700/10 dark:bg-gray-900  rounded-md w-full relative mb-4">
                           <div class="flex-auto p-4">
@@ -124,18 +162,17 @@
                                       <i data-lucide="shopping-bag" class=" h-16 w-16 stroke-green/30"></i>
                                   </div>
                               </div>
-                          </div><!--end card-body-->
-                      </div> <!--end inner-grid-->
+                          </div>
+                      </div>
                   </div>
-
-              </div> <!--end grid-->
+              </div>
               <div class="grid grid-cols-12 sm:grid-cols-12 md:grid-cols-12 lg:grid-cols-12 xl:grid-cols-12 gap-4 mb-4">
                   <div class="col-span-12 sm:col-span-12  md:col-span-12 lg:col-span-6 xl:col-span-12 ">
                       <div class="bg-white shadow-sm dark:shadow-slate-700/10 dark:bg-gray-900   rounded-md w-full relative">
                           <div class="border-b border-dashed border-slate-200 dark:border-slate-700 py-4 px-4 dark:text-slate-300/70">
                               <h4 class="font-medium flex-1 self-center mb-2 md:mb-0 text-xxl">Earnings Reports by Domain</h4>
                               <p class="text-sm text-slate-400">Earnings Reports Last Week <span class="focus:outline-none text-[11px] bg-brand-500/10 text-brand-500 dark:text-brand-300 rounded font-medium py-[2px] px-2">$18532</span></p>
-                          </div><!--end header-title-->
+                          </div>
                           <div class="grid grid-cols-1 p-4">
                               <div class="sm:-mx-6 lg:-mx-8">
                                   <div class="relative overflow-x-auto block w-full sm:px-6 lg:px-8">
@@ -175,7 +212,7 @@
                                                           <%= domain[:total_order] %>
                                                       </td>
                                                       <td class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                      <span class="text-red-500"><%= (( domain[:total_order].to_f / domain[:total_customers].to_f )*100).round(2) %> %</span>
+                                                      <span class="text-red-500"><%= domain[:total_customers].to_f == 0.0 ? 0.0 : (( domain[:total_order].to_f / domain[:total_customers].to_f )*100).round(2) %> %</span>
                                                       </td>
                                                       <td class="p-3 text-base text-gray-700 whitespace-nowrap dark:text-gray-400">
                                                           <span class="font-semibold">$<%= domain[:total_revenue] %></span>
@@ -191,73 +228,72 @@
                                                       </td>
                                                   </tr>
                                               <% end %>
-                                              <!-- 2 -->
                                           </tbody>
                                       </table>
-                                  </div>
-                              </div>
-                          </div><!--end card-body-->
-                      </div> <!--end card-->
-                  </div><!--end col-->
-                  <div class="col-span-12 sm:col-span-12  md:col-span-12 lg:col-span-6 xl:col-span-12 ">
-                      <div class="bg-white shadow-sm dark:shadow-slate-700/10 dark:bg-gray-900   rounded-md w-full relative">
-                          <div class="border-b border-dashed border-slate-200 dark:border-slate-700 py-4 px-4 dark:text-slate-300/70">
-                              <h4 class="font-medium flex-1 self-center mb-2 md:mb-0 text-xxl">Most Populer Products</h4>
-                              <p class="text-sm text-slate-400">New Products Last Week <span class="focus:outline-none text-[11px] bg-brand-500/10 text-brand-500 dark:text-brand-300 rounded font-medium py-[2px] px-2">5</span></p>
-                          </div><!--end header-title-->
-                          <div class="grid grid-cols-1 p-4">
-                              <div class="sm:-mx-6 lg:-mx-8">
-                                  <div class="relative overflow-x-auto block w-full sm:px-6 lg:px-8">
-                                      <table class="w-full">
-                                          <thead class="bg-brand-400/10 dark:bg-slate-700/20">
-                                              <tr>
-                                                  <th scope="col" class="p-3 text-base font-medium tracking-wider text-start text-gray-700 uppercase dark:text-gray-400">
-                                                      Product
-                                                  </th>
-                                                  <th scope="col" class="p-3 text-base font-medium tracking-wider text-start text-gray-700 uppercase dark:text-gray-400">
-                                                      Visitor
-                                                  </th>
-                                                  <th scope="col" class="p-3 text-base font-medium tracking-wider text-start text-gray-700 uppercase dark:text-gray-400">
-                                                      Orders
-                                                  </th>
-                                                  <th scope="col" class="p-3 text-base font-medium tracking-wider text-start text-gray-700 uppercase dark:text-gray-400">
-                                                      CR
-                                                  </th>
-                                                  <th scope="col" class="p-3 text-base font-medium tracking-wider text-start text-gray-700 uppercase dark:text-gray-400">
-                                                      Revenue
-                                                  </th>
-                                              </tr>
-                                          </thead>
-                                          <tbody id="data-container">
-                                            <% @products.each do |products| %>
-                                              <tr class="bg-white border-b border-dashed dark:bg-gray-900 dark:border-gray-700/40">
-                                                <td class="p-3 text-base font-medium whitespace-nowrap dark:text-white" title="<%= products[:product_name] %>">
-                                                  <%= truncate(products[:product_name], length: 35) %><br/>
-                                                <small class="text-gray-400"><%= products[:domain_name] %></small>
-                                                </td>
-                                                <td class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                  <%= products[:visitor] %>
-                                                </td>
-                                                <td class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                  <%= products[:order_count] %>
-                                                </td>
-                                                <td class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                <span class="text-red-500">
-                                                  <%= products[:visitor].to_i == 0 ? 0.0 : ((products[:order_count].to_f / products[:visitor].to_i)* 100).round(2) %>
-                                                %</span>
-                                                </td>
-                                                <td class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">$ <%= products[:revenue] %></td>
-                                              </tr>
-                                            <% end %>
-                                          </tbody>
-                                      </table>
-                                      </br>
-                                      <div style="display: flex; justify-content: center;">
-                                        <%== pagy_nav(@pagy) %>
-                                      </div>
                                   </div>
                               </div>
                           </div>
+                      </div>
+                  </div>
+                  <div class="col-span-12 sm:col-span-12  md:col-span-12 lg:col-span-6 xl:col-span-12 ">
+                      <div class="bg-white shadow-sm dark:shadow-slate-700/10 dark:bg-gray-900   rounded-md w-full relative">
+                        <div class="border-b border-dashed border-slate-200 dark:border-slate-700 py-4 px-4 dark:text-slate-300/70">
+                          <h4 class="font-medium flex-1 self-center mb-2 md:mb-0 text-xxl">Most Populer Products</h4>
+                          <p class="text-sm text-slate-400">New Products Last Week <span class="focus:outline-none text-[11px] bg-brand-500/10 text-brand-500 dark:text-brand-300 rounded font-medium py-[2px] px-2">5</span></p>
+                        </div>
+                        <div class="grid grid-cols-1 p-4">
+                          <div class="sm:-mx-6 lg:-mx-8">
+                            <div class="relative overflow-x-auto block w-full sm:px-6 lg:px-8">
+                                <table class="w-full">
+                                    <thead class="bg-brand-400/10 dark:bg-slate-700/20">
+                                        <tr>
+                                            <th scope="col" class="p-3 text-base font-medium tracking-wider text-start text-gray-700 uppercase dark:text-gray-400">
+                                                Product
+                                            </th>
+                                            <th scope="col" class="p-3 text-base font-medium tracking-wider text-start text-gray-700 uppercase dark:text-gray-400">
+                                                Visitor
+                                            </th>
+                                            <th scope="col" class="p-3 text-base font-medium tracking-wider text-start text-gray-700 uppercase dark:text-gray-400">
+                                                Orders
+                                            </th>
+                                            <th scope="col" class="p-3 text-base font-medium tracking-wider text-start text-gray-700 uppercase dark:text-gray-400">
+                                                CR
+                                            </th>
+                                            <th scope="col" class="p-3 text-base font-medium tracking-wider text-start text-gray-700 uppercase dark:text-gray-400">
+                                                Revenue
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="data-container">
+                                      <% @products.each do |products| %>
+                                        <tr class="bg-white border-b border-dashed dark:bg-gray-900 dark:border-gray-700/40">
+                                          <td class="p-3 text-base font-medium whitespace-nowrap dark:text-white" title="<%= products[:product_name] %>">
+                                            <%= truncate(products[:product_name], length: 35) %><br/>
+                                          <small class="text-gray-400"><%= products[:domain_name] %></small>
+                                          </td>
+                                          <td class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                            <%= products[:visitor] %>
+                                          </td>
+                                          <td class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                            <%= products[:order_count] %>
+                                          </td>
+                                          <td class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                          <span class="text-red-500">
+                                            <%= products[:visitor].to_i == 0 ? 0.0 : ((products[:order_count].to_f / products[:visitor].to_i)* 100).round(2) %>
+                                          %</span>
+                                          </td>
+                                          <td class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">$ <%= products[:revenue] %></td>
+                                        </tr>
+                                      <% end %>
+                                    </tbody>
+                                </table>
+                                </br>
+                                <div style="display: flex; justify-content: center;">
+                                  <%== pagy_nav(@pagy) %>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                   </div>
               </div>
@@ -635,21 +671,6 @@
 
 
   <script>
-    $('input[name="daterange"]').daterangepicker({
-      opens: 'right',
-      autoUpdateInput: false,
-      locale: {
-        cancelLabel: 'Clear',
-        applyLabel: 'Apply'
-      }
-    }, function(start, end, label) {
-      if (start.isSame(end, 'day')) {
-        $('input[name="daterange"]').val(start.format('MM/DD/YYYY'));
-      } else {
-        $('input[name="daterange"]').val(start.format('MM/DD/YYYY') + ' - ' + end.format('MM/DD/YYYY'));
-      }
-    });
-
     $('input[name="daterange"]').on('apply.daterangepicker', function(ev, picker) {
       var startDate = picker.startDate.format('YYYY-MM-DD');
       var endDate = picker.endDate.format('YYYY-MM-DD');
@@ -662,6 +683,12 @@
 
       window.location.href = url.toString();
     });
+  </script>
+
+  <script>
+    function refreshPage() {
+      location.reload();
+    }
   </script>
 </div>
 
