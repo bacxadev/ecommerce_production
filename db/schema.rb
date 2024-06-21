@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_06_19_043620) do
+ActiveRecord::Schema.define(version: 2024_06_21_144656) do
 
   create_table "add_to_carts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.date "visit_date"
@@ -30,6 +30,12 @@ ActiveRecord::Schema.define(version: 2024_06_19_043620) do
     t.string "item_id"
     t.string "order_id"
     t.string "total"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "domains", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "domain_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

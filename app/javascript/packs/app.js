@@ -313,18 +313,23 @@ try {
 
 
 try{
-  function convertToLosAngelesTime(date) {
-    var inputDate = new Date(date);
-    var losAngelesTime = new Date(inputDate.toLocaleString("en-US", {timeZone: "America/Los_Angeles"}));
-    return losAngelesTime;
-  }
-  var losAngelesDate = convertToLosAngelesTime(new Date());
-  flatpickr(".dash_date", {
-    defaultDate: losAngelesDate,
-    dateFormat: "d-M-Y",
-    mode: "range"
-  });
+  $('.dash_date').daterangepicker({
+    linkedCalendars: false,
+    showDropdowns: true,
+    timePicker: false,
+    minDate: moment().subtract(20, 'years'),
+    maxDate: moment(),
+    alwaysShowCalendars: true,
+    ranges: {
+      'Today': [moment(), moment()],
+      'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+      'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+      'This Month': [moment().startOf('month'), moment().endOf('month')],
+      'This Year': [moment().startOf('year'), moment().endOf('year')],
+    }
+});
 } catch (err){}
+
 
 try{
 function initDateRangrPicker() {
