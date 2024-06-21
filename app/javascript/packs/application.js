@@ -11,5 +11,4 @@ import "channels"
 Rails.start()
 // Turbolinks.start()
 ActiveStorage.start()
-require("./app")
 require("./test")

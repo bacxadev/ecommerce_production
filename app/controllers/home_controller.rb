@@ -2,10 +2,10 @@ class HomeController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    if params["date_time"].present?
-      start_date_str, end_date_str = params["date_time"].split(' - ')
-      start_date = Date.strptime(start_date_str, "%d/%m/%Y")
-      end_date = Date.strptime(end_date_str, "%d/%m/%Y")
+    if params["start_date"].present? && params["end_date"].present?
+      start_date_str, end_date_str = [params["start_date"], params["end_date"]]
+      start_date = Date.strptime(Date.parse(start_date_str).strftime("%d/%m/%Y"), "%d/%m/%Y")
+      end_date = Date.strptime(Date.parse(end_date_str).strftime("%d/%m/%Y"), "%d/%m/%Y")
       date_range = (start_date..end_date).to_a
 
       if current_user.admin_manager?
