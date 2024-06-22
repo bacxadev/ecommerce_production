@@ -9,10 +9,9 @@ Rails.application.routes.draw do
   post "/create_admin", to: "user_management#create_admin"
   namespace :api do
     namespace :v1 do
-      resources :domains do
+      resources :checkout do
         collection do
-          post :import_data_domain
-          post :import_data_product
+          post :import_checkout_success
         end
       end
     end

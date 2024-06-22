@@ -108,7 +108,7 @@
                               <div class="flex justify-between xl:gap-x-2 items-cente">
                                   <div class="self-center">
                                       <p class="text-gray-800 font-semibold dark:text-slate-400 uppercase">TOTAL VIEW</p>
-                                      <h3 class="my-4 font-semibold text-[30px] dark:text-slate-200">$<%= @total_order == 0 ? 0:(@total_revenue.to_f/@total_order).round(2) %></h3>
+                                      <h3 class="my-4 font-semibold text-[30px] dark:text-slate-200"><%= @total_views %></h3>
                                   </div>
                                   <div class="self-center">
                                       <i data-lucide="eye" class=" h-16 w-16 stroke-green/30"></i>
@@ -140,7 +140,7 @@
                               <div class="flex justify-between xl:gap-x-2 items-cente">
                                   <div class="self-center">
                                       <p class="text-gray-800 font-semibold dark:text-slate-400 uppercase">TOTAL ADD TO CART</p>
-                                      <h3 class="my-4 font-semibold text-[30px] dark:text-slate-200">$<%= @total_order == 0 ? 0:(@total_revenue.to_f/@total_order).round(2) %></h3>
+                                      <h3 class="my-4 font-semibold text-[30px] dark:text-slate-200"><%= @total_add_to_cart %></h3>
                                   </div>
                                   <div class="self-center">
                                       <i data-lucide="shopping-cart" class=" h-16 w-16 stroke-green/30"></i>
@@ -670,7 +670,7 @@
       </script>
 
 
-  <script>
+  <%# <script>
     $('input[name="daterange"]').on('apply.daterangepicker', function(ev, picker) {
       var startDate = picker.startDate.format('YYYY-MM-DD');
       var endDate = picker.endDate.format('YYYY-MM-DD');
@@ -683,7 +683,44 @@
 
       window.location.href = url.toString();
     });
-  </script>
+  </script> %>
+
+  <script>
+  $(document).ready(function() {
+    <%# $('input[name="daterange"]').daterangepicker({
+      locale: {
+        format: 'DD/MM/YYYY'
+      }
+    }); %>
+
+    // Set the date range picker value from URL params if they exist
+    var url = new URL(window.location.href);
+    var startDateParam = url.searchParams.get('start_date');
+    var endDateParam = url.searchParams.get('end_date');
+
+    if (startDateParam && endDateParam) {
+      var startDate = moment(startDateParam, 'YYYY-MM-DD');
+      var endDate = moment(endDateParam, 'YYYY-MM-DD');
+      $('input[name="daterange"]').data('daterangepicker').setStartDate(startDate);
+      $('input[name="daterange"]').data('daterangepicker').setEndDate(endDate);
+      $('input[name="daterange"]').val(startDate.format('DD/MM/YYYY') + ' - ' + endDate.format('DD/MM/YYYY'));
+    }
+
+    // Event handler for apply button
+    $('input[name="daterange"]').on('apply.daterangepicker', function(ev, picker) {
+      var startDate = picker.startDate.format('YYYY-MM-DD');
+      var endDate = picker.endDate.format('YYYY-MM-DD');
+      if (startDate === endDate) {
+        endDate = startDate;
+      }
+      var url = new URL(window.location.href);
+      url.searchParams.set('start_date', startDate);
+      url.searchParams.set('end_date', endDate);
+
+      window.location.href = url.toString();
+    });
+  });
+</script>
 
   <script>
     function refreshPage() {
