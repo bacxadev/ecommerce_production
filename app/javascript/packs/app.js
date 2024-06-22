@@ -313,7 +313,13 @@ try {
 
 
 try{
+  moment.tz.add([
+    'America/Los_Angeles|PST PDT|80 70|0101|1Lzm0 1zb0 Op0',
+  ]);
+  moment.tz.setDefault("America/Los_Angeles");
+
   $('.dash_date').daterangepicker({
+    timeZone: 'America/Los_Angeles',
     linkedCalendars: false,
     showDropdowns: true,
     timePicker: false,
