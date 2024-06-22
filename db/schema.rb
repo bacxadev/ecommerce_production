@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_06_21_144656) do
+ActiveRecord::Schema.define(version: 2024_06_22_095424) do
 
   create_table "add_to_carts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.date "visit_date"
@@ -25,11 +25,7 @@ ActiveRecord::Schema.define(version: 2024_06_21_144656) do
   create_table "checkouts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.date "visit_date"
     t.string "ip_address"
-    t.string "product_id"
-    t.string "domain_url"
-    t.string "item_id"
-    t.string "order_id"
-    t.string "total"
+    t.string "domain"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -44,6 +40,17 @@ ActiveRecord::Schema.define(version: 2024_06_21_144656) do
     t.string "product_name"
     t.string "domain"
     t.integer "product_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "successful_checkouts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.date "visit_date"
+    t.string "domain_url"
+    t.integer "order_id"
+    t.json "item_id"
+    t.string "customer_name"
+    t.string "address"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

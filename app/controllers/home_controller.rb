@@ -11,11 +11,13 @@ class HomeController < ApplicationController
       if current_user.admin_manager?
         total_products = total_products(Product.all, date_range).sort_by { |product| -product[:visitor] }
         @pagy, @products = pagy_array(total_products, items: 6)
-        @total_revenue = Checkout.sum_total_where_order_id_not_zero(date_range).to_i
+        @total_revenue = SuccessfulCheckout.total_revenue(date_range).to_f
         @total_customers = Traffic.unique_ip_address_count(date_range).to_i
         @total_order = Checkout.total_order(date_range)
         @total_checkout = Checkout.total_checkout(date_range)
         @total_domains = total_data(date_range)
+        @total_views = Traffic.total_views(date_range)
+        @total_add_to_cart = AddToCart.total_add_to_cart(date_range)
       else
         nil
       end
@@ -25,11 +27,13 @@ class HomeController < ApplicationController
       if current_user.admin_manager?
         total_products = total_products(Product.all, date_range).sort_by { |product| -product[:visitor] }
         @pagy, @products = pagy_array(total_products, items: 6)
-        @total_revenue = Checkout.sum_total_where_order_id_not_zero(date_range).to_i
+        @total_revenue = SuccessfulCheckout.total_revenue(date_range).to_f
         @total_customers = Traffic.unique_ip_address_count(date_range).to_i
         @total_order = Checkout.total_order(date_range)
         @total_checkout = Checkout.total_checkout(date_range)
         @total_domains = total_data(date_range)
+        @total_views = Traffic.total_views(date_range)
+        @total_add_to_cart = AddToCart.total_add_to_cart(date_range)
       else
         nil
       end
@@ -67,7 +71,7 @@ class HomeController < ApplicationController
         visitor: total_visitor_product(date_range, product.id),
         order_count: total_order_product(date_range, product.id),
         cr: 0,
-        revenue: total_revenue_product(date_range, product.id),
+        revenue: total_revenue_product(date_range, product.id, product.domain),
         domain_name: product.domain
       }
     end
@@ -99,15 +103,15 @@ class HomeController < ApplicationController
   end
 
   def total_order_domain date_range, domain_url
-    Checkout.where(visit_date: date_range, domain_url: domain_url).where.not(order_id: "0").count
+    SuccessfulCheckout.where(visit_date: date_range, domain_url: domain_url).count
   end
 
-  def total_revenue_domain date_range, domain_url
-    Checkout.where(visit_date: date_range, domain_url: domain_url).sum(:total)
-  end
+  # def total_revenue_domain date_range, domain_url
+  #   Checkout.where(visit_date: date_range, domain_url: domain_url).sum(:total)
+  # end
 
   def total_checkout_domain date_range, domain_url
-    Checkout.where(visit_date: date_range, domain_url: domain_url, order_id: "0").count
+    Checkout.where(visit_date: date_range, domain: domain_url).count
   end
 
   def total_visitor_product date_range, product_id
@@ -115,15 +119,43 @@ class HomeController < ApplicationController
   end
 
   def total_order_product date_range, product_id
-    Checkout.where(visit_date: date_range).where.not(order_id: "0").where("JSON_CONTAINS(item_id, '[{\"product_id\": ?}]', '$')", product_id).count
+    SuccessfulCheckout.where(visit_date: date_range).where("JSON_CONTAINS(item_id, '[{\"product_id\": ?}]', '$')", product_id).count
   end
 
-  def total_revenue_product date_range, product_id
-    total_sales = Checkout.where(visit_date: date_range).where.not(order_id: "0").sum do |checkout|
-      items = JSON.parse(checkout.item_id)
-      items.select { |item| item["product_id"] == product_id }.sum { |item| item["total"].to_f }
+  def total_revenue_product date_range, product_id, domain_url
+    # total_sales = Checkout.where(visit_date: date_range).where.not(order_id: "0").sum do |checkout|
+    #   items = JSON.parse(checkout.item_id)
+    #   items.select { |item| item["product_id"] == product_id }.sum { |item| item["total"].to_f }
+    # end
+
+    # total_sales
+
+    total_sum = 0
+    SuccessfulCheckout.where(visit_date: date_range, domain_url: domain_url).find_in_batches(batch_size: 1000) do |group|
+      group.each do |checkout|
+        items = JSON.parse(checkout.item_id)
+        items.each do |item|
+          if item['product_id'].to_i == product_id.to_i
+            total_sum += item['total'].to_f
+          end
+        end
+      end
     end
 
-    total_sales
+    total_sum
+  end
+
+  def total_revenue_domain date_range, domain_url
+    total_sum = 0
+    SuccessfulCheckout.where(visit_date: date_range, domain_url: domain_url).find_in_batches(batch_size: 1000) do |group|
+      group.each do |checkout|
+        items = JSON.parse(checkout.item_id)
+        items.each do |item|
+          total_sum += item['total'].to_f
+        end
+      end
+    end
+
+    total_sum
   end
 end

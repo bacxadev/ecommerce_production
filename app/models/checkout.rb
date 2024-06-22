@@ -1,6 +1,6 @@
 class Checkout < ApplicationRecord
   def self.sum_total_where_order_id_not_zero(date_range)
-    where(visit_date: date_range).where.not(order_id: "0").sum(:total)
+    where(visit_date: date_range).sum(:total)
   end
 
   def self.total_checkout(date_range)
@@ -9,6 +9,6 @@ class Checkout < ApplicationRecord
   end
 
   def self.total_order(date_range)
-    where(visit_date: date_range).where.not(order_id: "0").count
+    where(visit_date: date_range).count
   end
 end
