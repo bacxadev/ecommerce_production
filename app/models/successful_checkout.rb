@@ -6,11 +6,15 @@ class SuccessfulCheckout < ApplicationRecord
       group.each do |checkout|
         items = JSON.parse(checkout.item_id)
         items.each do |item|
-          total_sum += item['total'].to_f
+          total_sum += item['product_total'].to_f
         end
       end
     end
 
     total_sum
+  end
+
+  def self.total_order(date_range)
+    where(visit_date: date_range).count
   end
 end

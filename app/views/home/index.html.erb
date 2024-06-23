@@ -268,7 +268,7 @@
                                       <% @products.each do |products| %>
                                         <tr class="bg-white border-b border-dashed dark:bg-gray-900 dark:border-gray-700/40">
                                           <td class="p-3 text-base font-medium whitespace-nowrap dark:text-white" title="<%= products[:product_name] %>">
-                                            <%= truncate(products[:product_name], length: 35) %><br/>
+                                            <%= truncate(products[:product_name], length: 70) %><br/>
                                           <small class="text-gray-400"><%= products[:domain_name] %></small>
                                           </td>
                                           <td class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">

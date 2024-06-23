@@ -13,7 +13,7 @@ class HomeController < ApplicationController
         @pagy, @products = pagy_array(total_products, items: 6)
         @total_revenue = SuccessfulCheckout.total_revenue(date_range).to_f
         @total_customers = Traffic.unique_ip_address_count(date_range).to_i
-        @total_order = Checkout.total_order(date_range)
+        @total_order = SuccessfulCheckout.total_order(date_range)
         @total_checkout = Checkout.total_checkout(date_range)
         @total_domains = total_data(date_range)
         @total_views = Traffic.total_views(date_range)
@@ -29,7 +29,7 @@ class HomeController < ApplicationController
         @pagy, @products = pagy_array(total_products, items: 6)
         @total_revenue = SuccessfulCheckout.total_revenue(date_range).to_f
         @total_customers = Traffic.unique_ip_address_count(date_range).to_i
-        @total_order = Checkout.total_order(date_range)
+        @total_order = SuccessfulCheckout.total_order(date_range)
         @total_checkout = Checkout.total_checkout(date_range)
         @total_domains = total_data(date_range)
         @total_views = Traffic.total_views(date_range)
@@ -68,10 +68,10 @@ class HomeController < ApplicationController
 
       {
         product_name: product.product_name,
-        visitor: total_visitor_product(date_range, product.id),
-        order_count: total_order_product(date_range, product.id),
+        visitor: total_visitor_product(date_range, product.product_id),
+        order_count: total_order_product(date_range, product.product_id),
         cr: 0,
-        revenue: total_revenue_product(date_range, product.id, product.domain),
+        revenue: total_revenue_product(date_range, product.product_id, product.domain),
         domain_name: product.domain
       }
     end
@@ -136,7 +136,7 @@ class HomeController < ApplicationController
         items = JSON.parse(checkout.item_id)
         items.each do |item|
           if item['product_id'].to_i == product_id.to_i
-            total_sum += item['total'].to_f
+            total_sum += item['product_total'].to_f
           end
         end
       end
@@ -151,7 +151,7 @@ class HomeController < ApplicationController
       group.each do |checkout|
         items = JSON.parse(checkout.item_id)
         items.each do |item|
-          total_sum += item['total'].to_f
+          total_sum += item['product_total'].to_f
         end
       end
     end
